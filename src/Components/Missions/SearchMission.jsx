@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/SearchMission.module.css";
 import { AiOutlineSearch } from "react-icons/ai";
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const SearchMission = ({ handleSelect, missions }) => {
   const [searchText, setSearchText] = useState("");

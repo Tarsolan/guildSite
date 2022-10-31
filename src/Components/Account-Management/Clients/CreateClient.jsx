@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/CreateClient.module.css";
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const CreateClient = ({ onAdd, toast, clientLogin, setClient, setLogin }) => {
   const [firstName, setFirstName] = useState("");

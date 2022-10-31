@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/EditClient.module.css";
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const EditClient = ({ client, toast, onEdit, clientLogin, setClient }) => {
   const {
