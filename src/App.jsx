@@ -28,6 +28,7 @@ import EditMission from "./Components/Missions/EditMission";
 import MembersInfo from "./Components/Members/MembersInfo";
 import SearchMission from "./Components/Missions/SearchMission";
 import PageNotFound from "./Components/General/PageNotFound";
+
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 function App() {
