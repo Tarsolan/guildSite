@@ -38,12 +38,6 @@
   border-radius: 16px;
 }
 
-@media only screen and (max-width: 1200px) {
-  .accountSection {
-    margin: 3% 12.5%;
-  }
-}
-
 .detailsRow button,
 .loginForm button,
 .accountSection button,
@@ -104,13 +98,6 @@
   font-family: "Inter";
 }
 
-@media only screen and (max-width: 800px) {
-  .subDetail,
-  .login-new-user {
-    flex-direction: column;
-  }
-}
-
 .accountSection h3 {
   margin-top: 30px;
   text-decoration: underline;
@@ -149,4 +136,39 @@
   transition: 0.2s;
   background-color: white !important;
   color: #000000;
+}
+
+@media only screen and (max-width: 1200px) {
+  .accountSection {
+    margin: 3% 12.5%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .memberLogin {
+    margin: 3% 20%;
+  }
+
+  .subDetail,
+  .login-new-user {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .accountSection {
+    margin: 3% 5%;
+  }
+
+  .formRow {
+    display: block;
+    justify-content: space-between;
+    margin: 2% auto;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .memberLogin {
+    margin: 3% 5%;
+  }
 }

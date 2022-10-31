@@ -147,3 +147,33 @@
     background-color: #9c6f3e;
   }
 }
+
+@media only screen and (max-width: 410px) {
+  #missionBoard {
+    margin: 0px 5% 3% 5%;
+  }
+
+  .missionInfo {
+    transition: all 0.2s;
+    background: url("../../../pictures/old_paper_1.jpg");
+    background-size: cover;
+    height: 450px;
+    /* width: 400px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+
+    background-color: rgba(224, 201, 166);
+    border: 1px solid black;
+    margin: 1%;
+  }
+
+  .missionComplete {
+    align-self: center;
+    position: absolute;
+    top: auto;
+    height: 100px;
+    width: 150px;
+  }
+}

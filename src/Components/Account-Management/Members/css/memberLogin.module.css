@@ -14,3 +14,21 @@
   flex-direction: column;
   gap: 4vh;
 }
+
+@media only screen and (max-width: 1024px) {
+  .memberLogin {
+    margin: 3% 20%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .memberLogin {
+    margin: 3% 10%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .memberLogin {
+    margin: 3% 5%;
+  }
+}
