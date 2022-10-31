@@ -90,6 +90,11 @@ footer {
   width: auto;
 }
 
+.navbar-toggler-icon {
+  border: 1px solid white;
+  background-color: rgb(218, 189, 30);
+}
+
 /* main {
   display: grid;
   grid-template-columns: 0.1fr 1fr 0.1fr;
