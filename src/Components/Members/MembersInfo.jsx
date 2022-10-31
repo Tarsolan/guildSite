@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import usePagination from "../../Hooks/usePagination";
 import MemberInfo from "./MemberInfo";
 import styles from "./css/MembersInfo.module.css";
-import Arrow from "./Arrow";
+import Arrow from "../UI/Arrow";
 
 const MembersInfo = ({ members, selectedMember }) => {
   const paginate = usePagination(members, 1);
