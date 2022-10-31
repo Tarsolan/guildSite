@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import styles from "./css/MembersInfo.module.css";
+import styles from "./css/Arrow.module.css";
 
 const Arrow = ({ side, paginate, size }) => {
   return (

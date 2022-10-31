@@ -125,3 +125,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .singleMemberInfo {
+    margin: 3% 5%;
+    grid-column: span 2;
+  }
+}

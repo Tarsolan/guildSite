@@ -1,0 +1,32 @@
+.leftArrow,
+.rightArrow,
+.grey {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.leftArrow {
+  text-align: right;
+}
+
+.left {
+  text-align: right;
+}
+
+.grey {
+  opacity: 30%;
+}
+
+.leftArrow:hover,
+.rightArrow:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .leftArrow,
+  .rightArrow {
+    grid-row: 2;
+  }
+}
