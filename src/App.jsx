@@ -28,6 +28,7 @@ import EditMission from "./Components/Missions/EditMission";
 import MembersInfo from "./Components/Members/MembersInfo";
 import SearchMission from "./Components/Missions/SearchMission";
 import PageNotFound from "./Components/General/PageNotFound";
+global.API_ENDPOINT = "http://ec2-3-93-186-167.compute-1.amazonaws.com:3001";
 
 function App() {
   const [members, setMembers] = useState([]); // Member List
@@ -104,49 +105,49 @@ function App() {
   );
 
   const getRaces = async () => {
-    const res = await fetch("http://localhost:3001/races");
+    const res = await fetch(API_ENDPOINT + "/races");
     const data = await res.json();
 
     setRaces(data);
   };
 
   const getRanks = async () => {
-    const res = await fetch("http://localhost:3001/races/ranks");
+    const res = await fetch(API_ENDPOINT + "/races/ranks");
     const data = await res.json();
 
     setRanks(data);
   };
 
   const getSpecs = async () => {
-    const res = await fetch("http://localhost:3001/specs");
+    const res = await fetch(API_ENDPOINT + "/specs");
     const data = await res.json();
 
     setSpecializations(data);
   };
 
   // const getMember = async (id) => {
-  //   const res = await fetch(`http://localhost:3001/members/${id}`);
+  //   const res = await fetch(API_ENDPOINT + `/members/${id}`);
   //   const data = await res.json();
 
   //   return data;
   // };
 
   const getMembers = async () => {
-    const res = await fetch("http://localhost:3001/members");
+    const res = await fetch(API_ENDPOINT + "/members");
     const data = await res.json();
 
     setMembers(data);
   };
 
   const getMissions = async () => {
-    const res = await fetch("http://localhost:3001/missions");
+    const res = await fetch(API_ENDPOINT + "/missions");
     const data = await res.text();
 
     setMissions(JSON.parse(data));
   };
 
   // const getClients = async () => {
-  //   const res = await fetch("http://localhost:3001/clients");
+  //   const res = await fetch(API_ENDPOINT + "/clients");
   //   const data = await res.text();
 
   //   setClients(JSON.parse(data));
@@ -156,7 +157,7 @@ function App() {
 
   const memberLogin = async (member) => {
     // Returns true if password is valid for given member
-    const res = await fetch("http://localhost:3001/members/login", {
+    const res = await fetch(API_ENDPOINT + "/members/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(member),
@@ -174,13 +175,13 @@ function App() {
   };
 
   const addMember = async (member, specs) => {
-    await fetch("http://localhost:3001/register/member", {
+    await fetch(API_ENDPOINT + "/register/member", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(member),
     });
 
-    await fetch("http://localhost:3001/register/member/spec", {
+    await fetch(API_ENDPOINT + "/register/member/spec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(specs),
@@ -190,13 +191,13 @@ function App() {
   };
 
   const editMember = async (member, specs) => {
-    await fetch("http://localhost:3001/members/edit", {
+    await fetch(API_ENDPOINT + "/members/edit", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(member),
     });
 
-    await fetch("http://localhost:3001/members/edit/specs", {
+    await fetch(API_ENDPOINT + "/members/edit/specs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(specs),
@@ -210,7 +211,7 @@ function App() {
 
   const addMission = async (mission) => {
     console.log(mission);
-    const res = await fetch("http://localhost:3001/missions/new", {
+    const res = await fetch(API_ENDPOINT + "/missions/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(mission),
@@ -223,7 +224,7 @@ function App() {
   // Client Stuff
 
   const clientLogin = async (client) => {
-    const res = await fetch("http://localhost:3001/clients/login", {
+    const res = await fetch(API_ENDPOINT + "/clients/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(client),
@@ -249,7 +250,7 @@ function App() {
   };
 
   const createClient = async (client) => {
-    await fetch("http://localhost:3001/register/client", {
+    await fetch(API_ENDPOINT + "/register/client", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(client),
@@ -257,7 +258,7 @@ function App() {
   };
 
   const editClient = async (client) => {
-    await fetch("http://localhost:3001/clients/edit", {
+    await fetch(API_ENDPOINT + "/clients/edit", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(client),
@@ -267,7 +268,7 @@ function App() {
   };
 
   const editMission = async (mission) => {
-    await fetch("http://localhost:3001/missions/edit", {
+    await fetch(API_ENDPOINT + "/missions/edit", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(mission),
@@ -277,7 +278,7 @@ function App() {
   };
 
   const addMissionReport = async (report) => {
-    await fetch("http://localhost:3001/missions/reports/new", {
+    await fetch(API_ENDPOINT + "/missions/reports/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(report),
@@ -287,7 +288,7 @@ function App() {
   };
 
   const editMissionReport = async (details, id) => {
-    await fetch(`http://localhost:3001/missions/reports/edit/${id}`, {
+    await fetch(API_ENDPOINT + `/missions/reports/edit/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(details),

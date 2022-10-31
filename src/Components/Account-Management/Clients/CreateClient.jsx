@@ -13,7 +13,7 @@ const CreateClient = ({ onAdd, toast, clientLogin, setClient, setLogin }) => {
   const [captcha, setCaptcha] = useState(false);
 
   const orgNames = async () => {
-    let res = await fetch("http://localhost:3001/clients/orgNames");
+    let res = await fetch(API_ENDPOINT + "/clients/orgNames");
     let data = res.json();
 
     return data;

@@ -15,7 +15,7 @@ const SearchMission = ({ handleSelect, missions }) => {
     e.preventDefault();
 
     // Fetch mission data
-    const res = await fetch("http://localhost:3001/search/missions", {
+    const res = await fetch(API_ENDPOINT + "/search/missions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ searchText: searchText }),
@@ -23,7 +23,7 @@ const SearchMission = ({ handleSelect, missions }) => {
     const data = await res.json();
 
     // Fetch report data
-    const resReport = await fetch("http://localhost:3001/search/reports", {
+    const resReport = await fetch(API_ENDPOINT + "/search/reports", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ searchText: searchText }),
