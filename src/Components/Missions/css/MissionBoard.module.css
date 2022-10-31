@@ -1,0 +1,149 @@
+#missionBoard {
+  width: auto;
+  background: url("../../../pictures/cork.jpg");
+  background-size: auto;
+  margin: 0px 12.5% 3% 12.5%;
+  border: 5px solid black;
+  border-radius: 0px 0px 8px 8px;
+  background-color: #9c6f3e;
+  padding: 1%;
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* #missionBoardHead {
+  grid-column: span 3;
+  text-align: center;
+  color: white;
+  font-size: 48px;
+} */
+
+#missionBoardHead {
+  display: flex;
+  margin: 3% 12.5% 0px 12.5%;
+  justify-content: space-evenly;
+
+  color: white;
+  font-size: 32px;
+}
+
+#missionBoardHead button {
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  background-color: #9c6f3e;
+}
+
+#missionBoardHead button:focus {
+  background-color: #644728;
+}
+
+.missionPin {
+  height: 40px;
+  width: 40px;
+  align-self: center;
+}
+
+.missionComplete {
+  align-self: center;
+  position: absolute;
+  top: auto;
+  height: 300px;
+  width: 350px;
+}
+
+.missionInfo {
+  transition: all 0.2s;
+  background: url("../../../pictures/old_paper_1.jpg");
+  background-size: cover;
+  height: 450px;
+  /* width: 400px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+
+  background-color: rgba(224, 201, 166);
+  border: 1px solid black;
+  margin: 16px;
+}
+
+.missionInfo:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+
+.missionTop {
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.missionTitle {
+  align-self: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  text-decoration: underline;
+}
+
+.missionClient {
+  font-style: italic;
+  font-size: 20px;
+}
+
+.missionDesc {
+  margin-top: 5%;
+  height: 100%;
+}
+
+.missionBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2px solid black;
+}
+
+.missionDeadline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.missionPayout {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+@media only screen and (max-width: 1280px) {
+  #missionBoard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .missionComplete {
+    height: 200px;
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  #missionBoard {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .missionInfo:hover {
+    cursor: pointer;
+    transform: scale(1);
+  }
+  #missionBoardHead {
+    font-size: 12px;
+  }
+
+  #missionBoardHead button {
+    width: 100%;
+    border-radius: 8px 8px 0px 0px;
+    background-color: #9c6f3e;
+  }
+}

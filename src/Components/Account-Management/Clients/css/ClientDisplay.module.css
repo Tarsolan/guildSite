@@ -1,0 +1,72 @@
+.memberDisplay {
+  color: #ececec;
+  margin: 2% 25%;
+  padding: 2%;
+  background: rgba(53, 101, 42, 0.8);
+  border: 1px solid #5f5f5f;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+.memberDisplay h2 {
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.leftSide {
+  border-right: 1px solid #ececec;
+}
+
+.displayRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 10%;
+}
+
+.displayRowBottom {
+  margin: 12px auto;
+}
+
+.displayRow label,
+.displayRowBottom label,
+.displayRowDesc label {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.displayButton {
+  margin: 2% 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.missionList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.missionList h4 {
+  text-decoration: underline;
+}
+
+.detailButton {
+  height: 50%;
+  align-self: center;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.displayMission:hover {
+  cursor: pointer;
+}
+
+/* .missionList li {
+  border: 1px solid black;
+} */

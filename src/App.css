@@ -1,0 +1,177 @@
+.App {
+  text-align: center;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
+  /* user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none; */
+}
+
+/* html,
+#root {
+  background: rgb(2, 184, 138);
+} */
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-family: "Parisienne", cursive;
+  text-decoration: underline;
+  font-weight: 400;
+  font-size: 48px;
+}
+
+/* main,
+footer {
+  z-index: 1;
+} */
+/* Bootstrap Navigation */
+
+.navbar-guild {
+  background-color: rgba(53, 101, 42, 0.8);
+  font-family: "Parisienne", cursive;
+  font-size: 1.5em;
+  padding: 8px;
+  border-bottom: 2px solid rgba(224, 207, 51, 0.8);
+  color: white;
+  align-items: center;
+}
+
+.navbar-nav {
+  justify-content: space-between !important;
+}
+
+.navbar-guild a {
+  color: white;
+  margin: auto 20px;
+}
+
+.navbar-guild a:hover,
+.navbar-guild a::selection,
+.navbar-guild a:active {
+  color: white;
+}
+
+#guild-logo {
+  border-radius: 8px;
+  height: 100px;
+  width: auto;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+#nav-guild-name {
+  font-family: "Parisienne", cursive;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4em;
+  text-decoration: none;
+}
+
+.dropdown-menu {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75em !important;
+  margin-left: 20px !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+  width: auto;
+}
+
+/* main {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  justify-items: start;
+} */
+
+/* Member Display */
+
+/* .info-container {
+  margin: 3% 25%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 2fr;
+  background: var(--productInfoBack);
+  border: 1px solid #5f5f5f;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding-top: 10px;
+  align-items: center;
+} */
+
+/* Used in multiple places - do not remove */
+
+.borderBronze {
+  background-color: rgba(222, 184, 135, 0.5);
+  border: 3px solid burlywood;
+}
+
+.borderSilver {
+  background-color: rgba(192, 192, 192, 0.5);
+  border: 3px solid silver;
+}
+
+.borderGold {
+  background-color: rgba(255, 217, 0, 0.5);
+  border: 3px solid gold;
+}
+
+.borderDiamond {
+  background-color: rgba(0, 206, 209, 0.5);
+  border: 3px solid darkturquoise;
+}
+
+.Bronze {
+  background-color: burlywood;
+}
+
+.Silver {
+  background-color: silver;
+}
+
+.Gold {
+  background-color: gold;
+}
+
+.Diamond {
+  background-color: darkturquoise;
+}
+
+/* Mission Info Page */
+
+/* Create Mission */
+
+/* Create Member Bootstrap */
+
+.form-control {
+  background: rgba(196, 196, 196, 0.75) !important;
+  border: 0.5px solid #000000 !important;
+  box-sizing: border-box !important;
+  border-radius: 4px !important;
+}
+
+/* 
+.newForm {
+  display: grid;
+  text-align: center;
+  gap: 24px;
+}
+
+.newFormRow {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 24px;
+} */

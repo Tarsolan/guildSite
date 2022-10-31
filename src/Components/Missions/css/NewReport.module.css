@@ -1,0 +1,53 @@
+#reportBackground {
+  background: url("../../../pictures/cork.jpg");
+  background-size: auto;
+  margin: 3% 20%;
+  border: 5px solid black;
+  border-radius: 8px;
+  background-color: #9c6f3e;
+  padding: 1%;
+}
+
+#reportPage {
+  background: url(../../../pictures/old_paper_1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 2% 20%;
+  border: 1px solid #000000;
+  border-radius: 0px 45px;
+  padding: 2%;
+  font-family: "NSimSun";
+}
+
+#reportPage textarea {
+  width: 100%;
+  font-size: 24px;
+}
+
+#reportPage label,
+#reportPage span,
+#reportPage button {
+  font-size: 24px;
+}
+
+#reportPage h1 {
+  font-size: 64px;
+  font-weight: 400;
+  text-decoration: underline;
+  text-align: center;
+}
+
+#reportPage h2 {
+  font-family: "NSimSun";
+  font-size: 48px;
+  font-weight: 400;
+  text-decoration: underline;
+  text-align: center;
+}
+
+#reportPage button {
+  background: #cd1e1e;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 24px;
+}

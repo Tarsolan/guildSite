@@ -1,0 +1,29 @@
+.searchContainer {
+  margin: 3% 12.5%;
+  background-color: rgba(53, 101, 42, 1);
+  border: 3px solid rgba(224, 207, 51, 0.8);
+  padding: 3%;
+  color: white;
+  font-size: 18px;
+}
+
+.searchContainer form {
+  display: flex;
+  justify-content: center;
+}
+
+.searchHeader {
+  text-align: center;
+}
+
+.dataRow {
+  transition: all 0.2s ease-in-out;
+  color: white !important;
+}
+
+.dataRow:hover {
+  cursor: pointer;
+  color: black !important;
+  background-color: rgb(95, 139, 85) !important;
+  transition: all 0.2s ease-in-out;
+}

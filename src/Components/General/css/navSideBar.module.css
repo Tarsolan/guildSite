@@ -1,0 +1,17 @@
+/* Nav Sidebar */
+
+#navSide {
+  position: fixed;
+  top: 1%;
+  margin-top: 8%;
+  margin-left: 1%;
+  border: 1px solid black;
+  padding: 16px;
+  height: 25%;
+  width: 10%;
+  background-color: beige;
+}
+
+#navSide h2 {
+  font-size: 20pt;
+}

@@ -1,0 +1,127 @@
+/* Member Info Page */
+
+.singleMemberInfo {
+  border: 1px solid #5f5f5f;
+  box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  margin: 5% 20%;
+  /* height: 100%; */
+}
+
+.singleMemberInfo h3 {
+  font-size: 1.25em;
+  text-decoration: underline;
+}
+
+.infoContainer {
+  display: grid;
+  padding: 2%;
+  grid-template-columns: 0.5fr 1fr;
+  background-color: rgb(53, 101, 42);
+  color: beige;
+  border-radius: 16px 16px 0px 0px;
+  gap: 12px;
+  column-gap: 32px;
+  align-items: center;
+}
+
+.infoContainer img {
+  grid-row: span 2;
+  width: 350px;
+  height: auto;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 20px;
+  /* border: 3px solid rgba(224, 207, 51, 0.8); */
+}
+
+.infoName {
+  font-size: 2.25em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+}
+
+.infoTitle {
+  font-size: 2em;
+  text-align: center;
+}
+
+.infoInfo {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 15%;
+}
+
+.infoInfo div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoSpecs {
+  margin: auto 15%;
+}
+
+.infoSpecs ul {
+  columns: 2;
+}
+
+.infoDesc h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.infoDesc {
+  padding: 1%;
+  background-color: rgb(25, 56, 18);
+  border-radius: 0px 0px 16px 16px;
+  border-top: 2px solid black;
+  color: beige;
+}
+
+.memberRank {
+  border-radius: 40px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  padding: 2%;
+  text-align: center;
+  font-family: "Gideon Roman";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  color: white;
+  margin-bottom: 5%;
+}
+
+.imgTop {
+  display: none;
+}
+
+/* Member Rank CSS found in App.css */
+
+@media only screen and (max-width: 1280px) {
+  .singleMemberInfo {
+    margin: 5% 12.5%;
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  .imgTop {
+    display: grid;
+    place-items: center;
+  }
+
+  .imgTop img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .imgLeft {
+    display: none;
+  }
+
+  .infoContainer {
+    grid-template-columns: 1fr;
+  }
+}

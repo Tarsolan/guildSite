@@ -1,0 +1,26 @@
+.createMissionSection {
+  margin: 3% 25%;
+  padding: 3%;
+  background: rgba(53, 101, 42, 0.8);
+  box-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  color: white;
+  font-size: 18px;
+}
+
+.createMissionSection h2 {
+  text-align: center;
+}
+
+/* .createMissionForm {
+} */
+
+.formGroup {
+  width: 100%;
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 2% auto;
+}

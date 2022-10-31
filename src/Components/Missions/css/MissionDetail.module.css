@@ -1,0 +1,245 @@
+#missionDetail {
+  background: url("../../../pictures/cork.jpg");
+  background-size: auto;
+  margin: 3% 20%;
+  border: 5px solid black;
+  border-radius: 8px;
+  background-color: #9c6f3e;
+  padding: 1%;
+}
+
+#missionPage {
+  background: url(../../../pictures/old_paper_1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 2% 3%;
+  border: 1px solid #000000;
+  border-radius: 0px 45px;
+  padding: 2%;
+  font-family: "NSimSun";
+}
+
+.missionPin {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  /* margin: auto 50%; */
+}
+
+.detailTop h1 {
+  font-size: 64px;
+  font-weight: 400;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.detailRow {
+  display: flex;
+  font-size: 24px;
+  justify-content: space-between;
+  margin: auto 12.5%;
+}
+
+.detailMid h2 {
+  font-family: "NSimSun";
+  font-size: 48px;
+  font-weight: 400;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.description {
+  font-size: 24px;
+  min-height: 25vh;
+}
+
+.detailBot {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 0.5fr;
+}
+
+.detailPayout {
+  font-size: 32px;
+}
+
+.deadline {
+  grid-row: 3;
+}
+
+.date {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.missionNumContainer,
+.signatureContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  text-align: right;
+  grid-column: 2;
+  align-items: center;
+}
+
+.missionNumContainer {
+  text-align: center;
+}
+
+.signatureContainer {
+  grid-row: 3/4;
+}
+
+.missionNum,
+.signature {
+  border-top: 1px solid black;
+}
+
+#signature {
+  font-size: 48px;
+  font-family: "Vujahday Script", cursive;
+}
+
+#missionNum {
+  font-size: 48px;
+}
+
+.detailButtons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.detailButtons button {
+  background: #cd1e1e;
+  border-radius: 8px;
+  color: white;
+  padding: 8px 24px;
+}
+
+.missionComplete {
+  align-self: center;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  height: 300px;
+  width: 400px;
+}
+
+.reportTitle {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  text-decoration: none;
+}
+
+.reportContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.missionReport {
+  padding: 12px;
+  background-color: rgba(25, 56, 18, 0.5);
+  border-radius: 0px 0px 45px 0px;
+}
+
+.missionReport textarea {
+  width: 100%;
+  font-size: larger;
+}
+
+.missionReport p {
+  font-size: larger;
+}
+
+.missionReport h3 {
+  text-decoration: underline;
+}
+
+.reportHead span:hover,
+.reportHead h3:hover {
+  cursor: pointer;
+}
+
+.reportHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 1280px) {
+  #missionDetail {
+    margin: 3% 12.5%;
+  }
+  .missionComplete {
+    top: 100%;
+    height: 200px;
+    width: 250px;
+  }
+  .description {
+    min-height: 35vh;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  #missionDetail {
+    margin: 3% 5%;
+  }
+
+  .missionComplete {
+    top: 100%;
+    height: 100px;
+    width: 150px;
+  }
+
+  .description {
+    min-height: 35vh;
+  }
+
+  .detailRow {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detailRowHead {
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+  .detailBot {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+  }
+
+  .deadline,
+  .signatureContainer,
+  .missionNumContainer {
+    grid-column: auto;
+    grid-row: auto;
+    text-align: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+  }
+
+  .detailPayout {
+    border-bottom: 1px solid black;
+  }
+
+  .detailMid h2 {
+    font-size: 28pt;
+  }
+
+  /* .detailButtons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+  } */
+
+  .detailButtons button {
+    background: #cd1e1e;
+    border-radius: 8px;
+    color: white;
+    padding: 2px 4px;
+    margin: 1% auto;
+  }
+}

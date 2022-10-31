@@ -1,0 +1,49 @@
+.singleMember {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  align-items: center;
+  height: 100%;
+}
+
+.membersContainer {
+  overflow: hidden;
+  display: inline-flex;
+}
+
+.leftArrow,
+.rightArrow,
+.grey {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.leftArrow {
+  text-align: right;
+}
+
+.left {
+  text-align: right;
+}
+
+.grey {
+  opacity: 30%;
+}
+
+.leftArrow:hover,
+.rightArrow:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1280px) {
+  #memberContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #memberHead {
+    grid-column: span 2;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+}
