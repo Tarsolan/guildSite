@@ -28,7 +28,7 @@ import EditMission from "./Components/Missions/EditMission";
 import MembersInfo from "./Components/Members/MembersInfo";
 import SearchMission from "./Components/Missions/SearchMission";
 import PageNotFound from "./Components/General/PageNotFound";
-global.API_ENDPOINT = "http://ec2-3-93-186-167.compute-1.amazonaws.com:3001";
+global.API_ENDPOINT = process.env.API_ENDPOINT;
 
 function App() {
   const [members, setMembers] = useState([]); // Member List
