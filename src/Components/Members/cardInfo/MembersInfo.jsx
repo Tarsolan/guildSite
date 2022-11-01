@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import usePagination from "../../Hooks/usePagination";
-import MemberInfo from "./MemberInfo";
+import usePagination from "../../../Hooks/usePagination";
+import SingleMemberInfo from "./SingleMemberInfo";
 import styles from "./css/MembersInfo.module.css";
-import Arrow from "../UI/Arrow";
+import Arrow from "../../UI/Arrow";
 
 const MembersInfo = ({ members, selectedMember }) => {
   const paginate = usePagination(members, 1);
@@ -29,23 +29,9 @@ const MembersInfo = ({ members, selectedMember }) => {
     <div className={styles.singleMember}>
       <Arrow side={"left"} paginate={paginate} size={80} />
       {paginate.currentData().map((member) => {
-        return <MemberInfo member={member} />;
+        return <SingleMemberInfo member={member} />;
       })}
-      {/* <div className={styles.membersContainer}>
-        {members.map((member) => {
-          return <MemberInfo member={member} />;
-        })}
-      </div> */}
       <Arrow side={"right"} paginate={paginate} size={80} />
-      {/* <Carousel>
-        {members.map((member) => {
-          return (
-            <CarouselItem>
-              <MemberInfo member={member} />
-            </CarouselItem>
-          );
-        })}
-      </Carousel> */}
     </div>
   );
 };

@@ -150,3 +150,21 @@
   background-color: white !important;
   color: #000000;
 }
+
+@media only screen and (max-width: 425px) {
+  .accountSection {
+    margin: 3% 5%;
+  }
+
+  .formRow {
+    display: block;
+    justify-content: space-between;
+    margin: 2% auto;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .memberLogin {
+    margin: 3% 5%;
+  }
+}

@@ -1,0 +1,27 @@
+#memberTable {
+  border-radius: 20px;
+  grid-column: span 3;
+  grid-row: span 3;
+}
+
+.tableContainer {
+  grid-column: span 3;
+}
+
+@media only screen and (max-width: 1280px) {
+  #memberTable {
+    grid-column: span 2;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  #memberTable {
+    grid-column: span 1;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .descCol {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
 .searchContainer {
-  margin: 3% 12.5%;
+  margin: 1% 12.5%;
   background-color: rgba(53, 101, 42, 1);
   border: 3px solid rgba(224, 207, 51, 0.8);
   padding: 3%;
@@ -26,4 +26,28 @@
   color: black !important;
   background-color: rgb(95, 139, 85) !important;
   transition: all 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 1440px) {
+  .searchContainer {
+    margin: 1% 7%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .searchContainer {
+    margin: 1% 5%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .searchContainer {
+    margin: 1% 3%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .searchContainer {
+    margin: 1% 1%;
+  }
 }

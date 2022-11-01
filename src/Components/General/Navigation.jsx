@@ -96,12 +96,12 @@ const Navigation = ({
                 )}
                 {loginCheckClient && (
                   <NavDropdown.Item as={NavLink} to="/account/client/info">
-                    Account Details - Client
+                    Details - Client
                   </NavDropdown.Item>
                 )}
                 {loginCheckMember && (
                   <NavDropdown.Item as={NavLink} to="/account/member/info">
-                    Account Details - Member
+                    Details - Member
                   </NavDropdown.Item>
                 )}
                 <NavDropdown.Divider />

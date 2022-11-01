@@ -1,4 +1,4 @@
-.memberDisplay {
+.clientDisplay {
   color: #ececec;
   margin: 2% 25%;
   padding: 2%;
@@ -9,7 +9,7 @@
   border-radius: 16px;
 }
 
-.memberDisplay h2 {
+.clientDisplay h2 {
   text-align: center;
 }
 
@@ -48,7 +48,7 @@
 
 .missionList {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 24px;
 }
 
@@ -67,6 +67,68 @@
   cursor: pointer;
 }
 
+.editButton {
+  margin: auto;
+}
+
 /* .missionList li {
   border: 1px solid black;
 } */
+
+@media only screen and (max-width: 1440px) {
+  .clientDisplay {
+    margin: 1% 12.5%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .clientDisplay {
+    margin: 1% 5%;
+  }
+
+  .missionList {
+    grid-template-columns: 1fr;
+  }
+
+  .displayRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 10%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .clientDisplay {
+    margin: 1% 3%;
+  }
+
+  .displayButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailButton {
+    margin-bottom: 5%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .clientDisplay {
+    margin: 1% 3%;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .leftSide {
+    border-right: 0px;
+    border-bottom: 1px solid #ececec;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+}

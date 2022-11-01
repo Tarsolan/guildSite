@@ -4,7 +4,7 @@ import stamp from "../../pictures/complete_2.png";
 import pushPin from "../../pictures/push_pin.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import MemberInfo from "../Members/MemberInfo";
+import MemberInfo from "../Members/cardInfo/SingleMemberInfo";
 import Reports from "./Reports";
 
 const MissionDetail = ({

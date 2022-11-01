@@ -29,6 +29,10 @@ h2 {
   font-size: 48px;
 }
 
+a {
+  color: white !important;
+}
+
 /* main,
 footer {
   z-index: 1;
@@ -153,6 +157,10 @@ footer {
 
 .Diamond {
   background-color: darkturquoise;
+}
+
+.BronzeRow {
+  background-color: brown;
 }
 
 /* Mission Info Page */

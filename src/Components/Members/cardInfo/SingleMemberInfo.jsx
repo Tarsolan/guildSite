@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./css/memberInfo.module.css";
+import styles from "./css/SingleMemberInfo.module.css";
 
-const MemberInfo = ({ member }) => {
+const SingleMemberInfo = ({ member }) => {
   const {
     member_id,
     full_name,
@@ -12,18 +12,18 @@ const MemberInfo = ({ member }) => {
     spec,
     image_url,
     completed,
+    point_total,
   } = member;
   const date = new Date(join_date);
 
   // Don't forget race!!
-  var borderStyle = `border${rank_name}`;
   return (
     <div className={styles.singleMemberInfo}>
       <div className={styles.infoContainer}>
         <div className={styles.imgLeft}>
           <img
             src={image_url}
-            alt="Member"
+            alt="This person has not uploaded a picture."
             className={"border" + `${rank_name}`}
           />
         </div>
@@ -31,7 +31,7 @@ const MemberInfo = ({ member }) => {
           <div className={styles.imgTop}>
             <img
               src={image_url}
-              alt="Member"
+              alt="This person has not uploaded a picture."
               className={"border" + `${rank_name}`}
             />
           </div>
@@ -49,6 +49,10 @@ const MemberInfo = ({ member }) => {
             <div>
               <span>Missions Completed:</span>
               <span>{completed ? completed : `0`}</span>
+            </div>
+            <div>
+              <span>Point Total:</span>
+              <span>{point_total}</span>
             </div>
             <div>
               <span>Member Since:</span>
@@ -74,4 +78,4 @@ const MemberInfo = ({ member }) => {
   );
 };
 
-export default MemberInfo;
+export default SingleMemberInfo;

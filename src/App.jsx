@@ -2,7 +2,7 @@ import "./App.css";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./Components/General/Navigation";
-import Members from "./Components/Members/Members";
+import AllMembersList from "./Components/Members/AllMembersList";
 import About from "./Components/General/About";
 import MissionBoard from "./Components/Missions/MissionBoard";
 import NewMission from "./Components/Missions/NewMission";
@@ -25,7 +25,7 @@ import MissionDetail from "./Components/Missions/MissionDetail";
 import Background from "./Components/General/Background";
 import NewReport from "./Components/Missions/NewReport";
 import EditMission from "./Components/Missions/EditMission";
-import MembersInfo from "./Components/Members/MembersInfo";
+import MembersInfo from "./Components/Members/cardInfo/MembersInfo";
 import SearchMission from "./Components/Missions/SearchMission";
 import PageNotFound from "./Components/General/PageNotFound";
 
@@ -319,7 +319,7 @@ function App() {
           <Route
             path="/members"
             element={
-              <Members
+              <AllMembersList
                 members={members}
                 handleSelect={handleSelectMember}
                 pagination={usePagination}

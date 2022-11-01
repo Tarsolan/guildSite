@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0964f09d.css",
+    "main.js": "/static/js/main.03040df5.js",
+    "static/js/787.a7a0be59.chunk.js": "/static/js/787.a7a0be59.chunk.js",
+    "static/media/guild_new.jpg": "/static/media/guild_new.21aa25b59ae8495e68c1.jpg",
+    "static/media/cork.jpg": "/static/media/cork.e6ee71711c5f97d1217a.jpg",
+    "static/media/guild_old.jpg": "/static/media/guild_old.0b317f408dfe3c0ab8e3.jpg",
+    "static/media/old_paper_1.jpg": "/static/media/old_paper_1.3c6e444980558790823d.jpg",
+    "static/media/push_pin.png": "/static/media/push_pin.31f3b00eb99ea459b591.png",
+    "static/media/guild_logo.png": "/static/media/guild_logo.9d0d1aa6449c81857610.png",
+    "static/media/complete_2.png": "/static/media/complete_2.6d4f5aa493b41385ab51.png",
+    "index.html": "/index.html",
+    "main.0964f09d.css.map": "/static/css/main.0964f09d.css.map",
+    "main.03040df5.js.map": "/static/js/main.03040df5.js.map",
+    "787.a7a0be59.chunk.js.map": "/static/js/787.a7a0be59.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0964f09d.css",
+    "static/js/main.03040df5.js"
+  ]
+}
