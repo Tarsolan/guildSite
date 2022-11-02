@@ -1,6 +1,6 @@
 #missionBoard {
   width: auto;
-  background: url("../../../pictures/cork.jpg");
+  background: url("../../../utils/images/cork.avif");
   background-size: auto;
   margin: 0px 12.5% 3% 12.5%;
   border: 5px solid black;
@@ -55,7 +55,7 @@
 
 .missionInfo {
   transition: all 0.2s;
-  background: url("../../../pictures/old_paper_1.jpg");
+  background: url("../../../utils/images/old_paper_1.jpg");
   background-size: cover;
   height: 450px;
   /* width: 400px; */

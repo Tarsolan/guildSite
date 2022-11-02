@@ -1,21 +1,22 @@
 import { React, useState } from "react";
+import { successToast, errorToast } from "../../../utils/hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/EditClient.module.css";
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
-const EditClient = ({ client, toast, onEdit, clientLogin, setClient }) => {
+const EditClient = ({ client, onEdit }) => {
   const {
     client_id,
-    contact_name,
+    first_name,
+    last_name,
     organization,
     description,
     missions,
     status,
   } = client;
-  var names = contact_name.split(" ");
 
-  const [firstName, setFirstName] = useState(names[0]);
-  const [lastName, setLastName] = useState(names[1]);
+  const [firstName, setFirstName] = useState(first_name);
+  const [lastName, setLastName] = useState(last_name);
   const [newOrgName, setOrganization] = useState(organization);
   const [newDescription, setDescription] = useState(description);
   const [captcha, setCaptcha] = useState(false);
@@ -43,17 +44,15 @@ const EditClient = ({ client, toast, onEdit, clientLogin, setClient }) => {
     });
 
     if (returnFlag) {
-      toast(
-        "Sorry, that organization already has an account with us. Please log in or enter a different name.",
-        "error"
+      errorToast(
+        "Sorry, that organization already has an account with us. Please log in or enter a different name."
       );
       return;
     }
 
     if (!captcha) {
-      toast(
-        "You, my friend, are a robot. We don't take kindly to your kind around here.",
-        "error"
+      errorToast(
+        "You, my friend, are a robot. We don't take kindly to your kind around here."
       );
       return;
     }
@@ -63,23 +62,15 @@ const EditClient = ({ client, toast, onEdit, clientLogin, setClient }) => {
 
     await onEdit({
       client_id,
-      firstName,
-      lastName,
+      first_name: firstName,
+      last_name: lastName,
       organization: orgNameFilter,
       description: desc,
+      status: status,
+      missions: missions,
     });
 
-    toast("Client Account Edited.", "success");
-    var newClient = {
-      client_id: client_id,
-      status: status,
-      contact_name: `${firstName} ${lastName}`,
-      organization: newOrgName,
-      description: newDescription,
-      missions: missions,
-    };
-
-    setClient(newClient);
+    successToast("Client Account Edited.");
     goToClientInfo();
   };
 

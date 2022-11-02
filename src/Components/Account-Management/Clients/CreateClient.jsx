@@ -2,9 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/CreateClient.module.css";
+import { successToast, errorToast } from "../../../utils/hooks/useToast";
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
-const CreateClient = ({ onAdd, toast, clientLogin, setClient, setLogin }) => {
+const CreateClient = ({ onAdd }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -33,22 +34,21 @@ const CreateClient = ({ onAdd, toast, clientLogin, setClient, setLogin }) => {
     orgs.map((org) => org.organization === orgName && (returnFlag = true));
 
     if (returnFlag) {
-      toast(
-        "Sorry, that organization already has an account with us. Please log in or enter a different name.",
-        "error"
+      errorToast(
+        "Sorry, that organization already has an account with us. Please log in or enter a different name."
       );
       return;
     }
+
     if (!captcha) {
-      toast(
-        "You, my friend, are a robot. We don't take kindly to your kind around here.",
-        "error"
+      errorToast(
+        "You, my friend, are a robot. We don't take kindly to your kind around here."
       );
       return;
     }
 
     if (password !== passwordConfirm) {
-      toast("Invalid entry. The two passwords do not match.", "error");
+      errorToast("Invalid entry. The two passwords do not match.");
       return;
     }
 
@@ -56,24 +56,16 @@ const CreateClient = ({ onAdd, toast, clientLogin, setClient, setLogin }) => {
     var orgNameFilter = orgName.replace(/'/g, "''");
 
     await onAdd({
-      firstName,
-      lastName,
+      first_name: firstName,
+      last_name: lastName,
       organization: orgNameFilter,
       description: desc,
       password,
     });
 
-    toast("Client Account Created.", "success");
-    var client = await clientLogin({ orgName, password });
-    setLogin(true);
-    setClient(client);
+    successToast("Client Account Created.");
+
     goToClientInfo();
-    // setTimeout(async () => {
-    //   var client = await clientLogin({ orgName, password });
-    //   setLogin(true);
-    //   setClient(client);
-    //   goToClientInfo();
-    // }, 1000);
   };
 
   return (

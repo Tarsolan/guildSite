@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/MissionBoard.module.css";
-import stamp from "../../pictures/complete_2.png";
-import pushPin from "../../pictures/push_pin.png";
+import stamp from "../../utils/images/complete_2.png";
+import pushPin from "../../utils/images/push_pin.png";
 
 const Mission = ({ mission, onSelect }) => {
   const {

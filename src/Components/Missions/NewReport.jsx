@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/NewReport.module.css";
+import { successToast, errorToast } from "../../utils/hooks/useToast";
 
 // NEEDED FOR REPORT - sql = ``
 
-const NewReport = ({ mission, member, toast, onPost }) => {
+const NewReport = ({ mission, member, onPost }) => {
   const { mission_num, job_name } = mission;
   const { member_id, full_name } = member;
   const [reportDetails, setReportDetails] = useState("");
@@ -18,19 +19,20 @@ const NewReport = ({ mission, member, toast, onPost }) => {
     e.preventDefault();
 
     if (!checked) {
-      toast(
-        "If you aren't willing to swear by what you say, we aren't willing to accept it as truth. Begone.",
-        "error"
+      errorToast(
+        "If you aren't willing to swear by what you say, we aren't willing to accept it as truth. Begone."
       );
       return;
     }
 
     // var filterDetails = reportDetails.replace(/'/g, "''");
 
-    onPost({ mission_num, member_id, reportDetails });
+    if (reportDetails !== "") {
+      onPost({ mission_num, member_id, reportDetails });
 
-    toast("Report filed successfully.", "success");
-    goToMissionPage(mission_num);
+      successToast("Report filed successfully.");
+      goToMissionPage(mission_num);
+    } else errorToast("Error! The report cannot be empty!");
   };
 
   return (

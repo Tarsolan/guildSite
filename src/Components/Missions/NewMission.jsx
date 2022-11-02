@@ -1,8 +1,9 @@
 import { React, useState } from "react";
 import styles from "./css/NewMission.module.css";
 import { useNavigate } from "react-router-dom";
+import { errorToast, successToast } from "../../utils/hooks/useToast";
 
-const NewMission = ({ onAdd, client, toast }) => {
+const NewMission = ({ onAdd, client }) => {
   const [missionTitle, setMissionTitle] = useState("");
   const [missionDesc, setMissionDesc] = useState("");
   const [missionDeadline, setMissionDeadline] = useState("");
@@ -14,15 +15,18 @@ const NewMission = ({ onAdd, client, toast }) => {
   const submitMissionData = (e) => {
     e.preventDefault();
     let client_id = client.client_id;
-    onAdd({
-      missionTitle,
-      missionDesc,
-      missionPayout,
-      missionDeadline,
-      client_id,
-    });
-    toast("Mission Created.", "success");
-    goToMissionBoard();
+
+    if (missionTitle !== "" && missionDesc !== "" && missionDeadline !== "") {
+      onAdd({
+        missionTitle,
+        missionDesc,
+        missionPayout,
+        missionDeadline,
+        client_id,
+      });
+      successToast("Mission Created.");
+      goToMissionBoard();
+    } else errorToast("Error! No field can be blank.");
   };
 
   return (

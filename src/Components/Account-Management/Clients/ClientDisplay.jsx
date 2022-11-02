@@ -6,9 +6,10 @@ import { useState } from "react";
 const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
   const {
     client_id,
+    first_name,
+    last_name,
     status,
     description,
-    contact_name,
     organization,
     missions,
   } = client;
@@ -39,8 +40,9 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
         <div
           onClick={() => missionSelect(mission.mission_num)}
           className={styles.displayMission}
+          key={mission.mission_num}
         >
-          <span key={mission.mission_num}>
+          <span>
             <h4>
               {mission.mission_num} - {mission.job_name}
             </h4>
@@ -59,7 +61,9 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
         <div className={styles.leftSide}>
           <div className={styles.displayRow}>
             <label>Contact Name:</label>
-            <div>{contact_name}</div>
+            <div>
+              {first_name} {last_name}
+            </div>
           </div>
           <div className={styles.displayRow}>
             <label>Organization:</label>

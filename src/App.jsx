@@ -1,5 +1,5 @@
 import "./App.css";
-import { toast, ToastContainer, Slide } from "react-toastify";
+import { ToastContainer, infoToast } from "./utils/hooks/useToast";
 import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./Components/General/Navigation";
 import AllMembersList from "./Components/Members/AllMembersList";
@@ -10,7 +10,7 @@ import NewMission from "./Components/Missions/NewMission";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 //import useFetch from "./Hooks/useFetch";
-import usePagination from "./Hooks/usePagination";
+import usePagination from "./utils/hooks/usePagination";
 import ClientLogin from "./Components/Account-Management/Clients/ClientLogin";
 // import MemberInfo from "./Components/Members/MemberInfo";
 import Footer from "./Components/General/Footer";
@@ -28,13 +28,24 @@ import EditMission from "./Components/Missions/EditMission";
 import MembersInfo from "./Components/Members/cardInfo/MembersInfo";
 import SearchMission from "./Components/Missions/SearchMission";
 import PageNotFound from "./Components/General/PageNotFound";
+import {
+  getRaces,
+  getRanks,
+  getSpecs,
+} from "./api/services/members/getMiscData";
+import { getMissions } from "./api/services/missions/getMissions";
+import { getMembers } from "./api/services/members/getMembers";
+import { addMember } from "./api/services/members/addMember";
+import { editMember } from "./api/services/members/editMember";
+import { addClient } from "./api/services/clients/addClient";
+import { editClient } from "./api/services/clients/editClient";
+import { getClient } from "./api/services/clients/getClients";
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 function App() {
   const [members, setMembers] = useState([]); // Member List
   const [missions, setMissions] = useState([]); // Mission List
-  // const [clients, setClients] = useState(false); // Client List - no longer stored client-side
   const [races, setRaces] = useState(false);
   const [ranks, setRanks] = useState(false);
   const [specializations, setSpecializations] = useState(false);
@@ -46,50 +57,33 @@ function App() {
   const [selectedMissionID, setSelectedMissionID] = useState(false); // Stores info on currently selected mission (for info page)
 
   useEffect(() => {
-    getMembers();
-    getMissions();
-    getRaces();
-    getSpecs();
-    getRanks();
+    async function getMiscData() {
+      const raceData = await getRaces();
+      setRaces(raceData);
+
+      const specData = await getSpecs();
+      setSpecializations(specData);
+
+      const rankData = await getRanks();
+      setRanks(rankData);
+    }
+    getMiscData();
+    getMissionData();
+    getMemberData();
   }, []);
 
-  const infoToast = (message, type = "info") => {
-    if (type === "info") {
-      toast.info(message, {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        transition: Slide,
-      });
-    } else if (type === "error") {
-      toast.error(message, {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        transition: Slide,
-      });
-    } else if (type === "success") {
-      toast.success(message, {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        transition: Slide,
-      });
-    }
+  // Data fetching
+  const getMissionData = async () => {
+    const missionData = await getMissions();
+    setMissions(missionData);
   };
 
+  const getMemberData = async () => {
+    const memberData = await getMembers();
+    setMembers(memberData);
+  };
+
+  // Memory
   const currentMember = useMemo(
     () => members.find((member) => member.member_id === currentMemberID),
     [members, currentMemberID]
@@ -105,66 +99,11 @@ function App() {
     [missions, selectedMissionID]
   );
 
-  const getRaces = async () => {
-    const res = await fetch(API_ENDPOINT + "/races");
-    const data = await res.json();
-
-    setRaces(data);
-  };
-
-  const getRanks = async () => {
-    const res = await fetch(API_ENDPOINT + "/races/ranks");
-    const data = await res.json();
-
-    setRanks(data);
-  };
-
-  const getSpecs = async () => {
-    const res = await fetch(API_ENDPOINT + "/specs");
-    const data = await res.json();
-
-    setSpecializations(data);
-  };
-
-  // const getMember = async (id) => {
-  //   const res = await fetch(API_ENDPOINT + `/members/${id}`);
-  //   const data = await res.json();
-
-  //   return data;
-  // };
-
-  const getMembers = async () => {
-    const res = await fetch(API_ENDPOINT + "/members");
-    const data = await res.json();
-
-    setMembers(data);
-  };
-
-  const getMissions = async () => {
-    const res = await fetch(API_ENDPOINT + "/missions");
-    const data = await res.text();
-
-    setMissions(JSON.parse(data));
-  };
-
-  // const getClients = async () => {
-  //   const res = await fetch(API_ENDPOINT + "/clients");
-  //   const data = await res.text();
-
-  //   setClients(JSON.parse(data));
-  // };
-
   // Member Stuff
-
-  const memberLogin = async (member) => {
-    // Returns true if password is valid for given member
-    const res = await fetch(API_ENDPOINT + "/members/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(member),
-    });
-    const data = await res.json();
-    return data;
+  const memberLogin = (member_id) => {
+    setCurrentMemberID(member_id);
+    setSelectedMemberID(member_id);
+    setMemberLoggedIn(true);
   };
 
   const memberLogout = () => {
@@ -175,63 +114,44 @@ function App() {
     setMemberLoggedIn(false);
   };
 
-  const addMember = async (member, specs) => {
-    await fetch(API_ENDPOINT + "/register/member", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(member),
-    });
-
-    await fetch(API_ENDPOINT + "/register/member/spec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(specs),
-    });
-
-    setTimeout(() => getMembers(), 1000);
+  const newMember = async (member, specArr) => {
+    const newMem = await addMember(member, specArr);
+    setMembers([...members, newMem]);
+    setCurrentMemberID(newMem.member_id);
+    setMemberLoggedIn(true);
   };
 
-  const editMember = async (member, specs) => {
-    await fetch(API_ENDPOINT + "/members/edit", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(member),
-    });
+  const memberEdit = async (member, specs) => {
+    const editedMem = await editMember(member, specs);
 
-    await fetch(API_ENDPOINT + "/members/edit/specs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(specs),
-    });
+    setMembers(
+      members.map((mem) =>
+        mem.member_id === editedMem.member_id ? editedMem : mem
+      )
+    );
+    // getMissionData();
+  };
 
-    setTimeout(() => getMembers(), 1000);
-    getMissions();
+  const handleSelectMember = (member) => {
+    setSelectedMemberID(member.member_id);
   };
 
   // Mission Stuff
-
   const addMission = async (mission) => {
-    console.log(mission);
     const res = await fetch(API_ENDPOINT + "/missions/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(mission),
     });
     const data = res.text();
-    console.log(data);
-    getMissions();
+
+    getMissionData();
   };
 
   // Client Stuff
-
   const clientLogin = async (client) => {
-    const res = await fetch(API_ENDPOINT + "/clients/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(client),
-    });
-    const data = await res.json();
-    return data;
+    setCurrentClient(client);
+    setClientLoggedIn(true);
   };
 
   const clientLogout = () => {
@@ -242,30 +162,21 @@ function App() {
     setClientLoggedIn(false);
   };
 
-  const handleSelectMember = (member) => {
-    setSelectedMemberID(member.member_id);
-  };
-
-  const handleSelectMission = (mission) => {
-    setSelectedMissionID(mission.mission_num);
-  };
-
   const createClient = async (client) => {
-    await fetch(API_ENDPOINT + "/register/client", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(client),
+    const newID = await addClient(client);
+    clientLogin({
+      client_id: newID.client_id,
+      status: true,
+      ...client,
+      missions: [],
     });
   };
 
-  const editClient = async (client) => {
-    await fetch(API_ENDPOINT + "/clients/edit", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(client),
-    });
+  const clientEdit = async (client) => {
+    await editClient(client);
+    clientLogin(client);
 
-    getMissions();
+    // getMissionData();
   };
 
   const editMission = async (mission) => {
@@ -275,7 +186,11 @@ function App() {
       body: JSON.stringify(mission),
     });
 
-    getMissions();
+    getMissionData();
+  };
+
+  const handleSelectMission = (mission) => {
+    setSelectedMissionID(mission.mission_num);
   };
 
   const addMissionReport = async (report) => {
@@ -285,7 +200,7 @@ function App() {
       body: JSON.stringify(report),
     });
 
-    getMissions();
+    getMissionData();
   };
 
   const editMissionReport = async (details, id) => {
@@ -295,7 +210,7 @@ function App() {
       body: JSON.stringify(details),
     });
 
-    getMissions();
+    getMissionData();
   };
 
   return (
@@ -307,7 +222,6 @@ function App() {
           logOutClient={clientLogout}
           loginCheckMember={memberLoggedIn}
           logOutMember={memberLogout}
-          toast={infoToast}
         />
       </header>
 
@@ -359,7 +273,6 @@ function App() {
                 mission={selectedMission}
                 members={members}
                 loginCheck={memberLoggedIn}
-                toast={infoToast}
                 clientCheck={clientLoggedIn}
                 clientInfo={currentClient}
                 handleSelectMem={handleSelectMember}
@@ -373,36 +286,19 @@ function App() {
           <Route
             path="missions/info/:id/edit"
             element={
-              <EditMission
-                mission={selectedMission}
-                toast={infoToast}
-                onEdit={editMission}
-              />
+              <EditMission mission={selectedMission} onEdit={editMission} />
             }
           />
 
           {clientLoggedIn ? (
             <Route
               path="/missions/create"
-              element={
-                <NewMission
-                  onAdd={addMission}
-                  client={currentClient}
-                  toast={infoToast}
-                />
-              }
+              element={<NewMission onAdd={addMission} client={currentClient} />}
             />
           ) : (
             <Route
               path="/missions/create"
-              element={
-                <ClientLogin
-                  clientLogin={clientLogin}
-                  setLogin={setClientLoggedIn}
-                  setClient={setCurrentClient}
-                  toast={infoToast}
-                />
-              }
+              element={<ClientLogin handleLogin={clientLogin} />}
             />
           )}
           {memberLoggedIn ? (
@@ -412,7 +308,6 @@ function App() {
                 <NewReport
                   mission={selectedMission}
                   member={currentMember}
-                  toast={infoToast}
                   onPost={addMissionReport}
                 />
               }
@@ -421,39 +316,18 @@ function App() {
             <Route
               path="/missions/info/:id/reports/new"
               element={
-                <MemberLogin
-                  memberLogin={memberLogin}
-                  members={members}
-                  setMember={setCurrentMemberID}
-                  setSelect={setSelectedMemberID}
-                  setLogin={setMemberLoggedIn}
-                  toast={infoToast}
-                />
+                <MemberLogin members={members} handleLogin={memberLogin} />
               }
             />
           )}
           <Route
             path="/account/client/login"
-            element={
-              <ClientLogin
-                clientLogin={clientLogin}
-                setLogin={setClientLoggedIn}
-                setClient={setCurrentClient}
-                toast={infoToast}
-              />
-            }
+            element={<ClientLogin handleLogin={clientLogin} />}
           />
           <Route
             path="/account/member/login"
             element={
-              <MemberLogin
-                memberLogin={memberLogin}
-                members={members}
-                setMember={setCurrentMemberID}
-                setSelect={setSelectedMemberID}
-                setLogin={setMemberLoggedIn}
-                toast={infoToast}
-              />
+              <MemberLogin members={members} handleLogin={memberLogin} />
             }
           />
           <Route
@@ -465,14 +339,7 @@ function App() {
                   selectMission={setSelectedMissionID}
                 />
               ) : (
-                <MemberLogin
-                  memberLogin={memberLogin}
-                  members={members}
-                  setMember={setCurrentMemberID}
-                  setSelect={setSelectedMemberID}
-                  setLogin={setMemberLoggedIn}
-                  toast={infoToast}
-                />
+                <MemberLogin members={members} handleLogin={memberLogin} />
               )
             }
           />
@@ -485,8 +352,7 @@ function App() {
                 ranks={ranks}
                 member={currentMember}
                 members={members}
-                onEdit={editMember}
-                toast={infoToast}
+                onEdit={memberEdit}
                 setMember={setCurrentMemberID}
               />
             }
@@ -499,8 +365,7 @@ function App() {
                 specializations={specializations}
                 ranks={ranks}
                 members={members}
-                onAdd={addMember}
-                toast={infoToast}
+                onAdd={newMember}
               />
             }
           />
@@ -516,27 +381,11 @@ function App() {
           />
           <Route
             path="/register/client"
-            element={
-              <CreateClient
-                onAdd={createClient}
-                toast={infoToast}
-                clientLogin={clientLogin}
-                setLogin={setClientLoggedIn}
-                setClient={setCurrentClient}
-              />
-            }
+            element={<CreateClient onAdd={createClient} />}
           />
           <Route
             path="/account/client/info/edit"
-            element={
-              <EditClient
-                client={currentClient}
-                toast={infoToast}
-                onEdit={editClient}
-                clientLogin={clientLogin}
-                setClient={setCurrentClient}
-              />
-            }
+            element={<EditClient client={currentClient} onEdit={clientEdit} />}
           />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

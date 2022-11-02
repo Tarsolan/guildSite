@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./css/ClientLogin.module.css";
+import { successToast, errorToast } from "../../../utils/hooks/useToast";
+import { clientLogin } from "../../../api/services/clients/clientLogin";
 
-const ClientLogin = ({ clientLogin, setClient, setLogin, toast }) => {
+const ClientLogin = ({ handleLogin }) => {
   const [orgName, setOrgName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,24 +21,23 @@ const ClientLogin = ({ clientLogin, setClient, setLogin, toast }) => {
     var client = await clientLogin({ orgName: orgNameFilter, password });
 
     if (client === "inactive") {
-      toast(
-        "Client is inactive. Please contact administration to get your account re-activated.",
-        "error"
+      errorToast(
+        "Client is inactive. Please contact administration to get your account re-activated."
       );
       setPassword("");
       return false;
     } else if (client === "noClient") {
-      toast("Invalid organization name. Please try again.", "error");
+      errorToast("Invalid organization name. Please try again.");
       setPassword("");
       return false;
     } else if (client === "noPass") {
-      toast("Invalid password. Please try again.", "error");
+      errorToast("Invalid password. Please try again.");
       setPassword("");
       return false;
     } else {
-      toast(`Login verified. Welcome, ${orgName}.`, "success");
-      setLogin(true);
-      setClient(client);
+      successToast(`Login verified. Welcome, ${orgName}.`);
+
+      handleLogin(client);
       goToClientInfo();
     }
   };

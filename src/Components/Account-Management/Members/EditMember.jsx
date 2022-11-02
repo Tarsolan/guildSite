@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/editMember.module.css";
+import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
 const EditMember = ({
   races,
@@ -9,7 +10,6 @@ const EditMember = ({
   member,
   members,
   onEdit,
-  toast,
 }) => {
   const { member_id, full_name, desc, title, rank_name, race, spec } = member;
 
@@ -104,16 +104,14 @@ const EditMember = ({
     });
 
     if (returnFlag) {
-      toast(
-        "Sorry, that title is already in use. Please use another title.",
-        "error"
+      errorToast(
+        "Sorry, that title is already in use. Please use another title."
       );
       return;
     }
     if (!captcha) {
-      toast(
-        "You, my friend, are a robot. We don't take kindly to your kind around here.",
-        "error"
+      errorToast(
+        "You, my friend, are a robot. We don't take kindly to your kind around here."
       );
       return;
     }
@@ -161,9 +159,9 @@ const EditMember = ({
         raceID,
         rankID,
       },
-      { member_id, specArr }
+      specArr
     );
-    toast("Member Account Edited.", "success");
+    successToast("Member Account Edited.", "success");
 
     goToAccountDetail();
   };

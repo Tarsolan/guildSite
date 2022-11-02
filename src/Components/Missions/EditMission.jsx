@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./css/EditMission.module.css";
-import pushPin from "../../pictures/push_pin.png";
+import pushPin from "../../utils/images/push_pin.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { errorToast, successToast } from "../../utils/hooks/useToast";
 
-const EditMission = ({ mission, toast, onEdit }) => {
+const EditMission = ({ mission, onEdit }) => {
   const {
     complete,
     mission_num,
@@ -33,18 +34,20 @@ const EditMission = ({ mission, toast, onEdit }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    onEdit({
-      mission_num,
-      newName,
-      newDesc,
-      newPay,
-      newDate,
-      status,
-    });
+    if (newName !== "" && newDesc !== "" && newDate !== "") {
+      onEdit({
+        mission_num,
+        newName,
+        newDesc,
+        newPay,
+        newDate,
+        status,
+      });
 
-    toast("Mission Edited.", "success");
+      successToast("Mission Edited.");
 
-    goToMissionPage(mission_num);
+      goToMissionPage(mission_num);
+    } else errorToast("Error! No field can be blank!");
   };
 
   return (

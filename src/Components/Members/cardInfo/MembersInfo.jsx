@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import usePagination from "../../../Hooks/usePagination";
+import usePagination from "../../../utils/hooks/usePagination";
 import SingleMemberInfo from "./SingleMemberInfo";
 import styles from "./css/MembersInfo.module.css";
 import Arrow from "../../UI/Arrow";

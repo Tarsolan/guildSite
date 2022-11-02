@@ -1,16 +1,16 @@
 import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../../pictures/guild_logo.png";
+import logo from "../../utils/images/guild_logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 // import styles from "./css/navigation.module.css";
+import { infoToast } from "../../utils/hooks/useToast";
 
 const Navigation = ({
   loginCheckClient,
   logOutClient,
   loginCheckMember,
   logOutMember,
-  toast,
 }) => {
   // const [login, setLogin] = useState(false);
 
@@ -72,7 +72,7 @@ const Navigation = ({
                     as={NavLink}
                     to="/account/client/login"
                     onClick={() => {
-                      toast("Please log in before creating a mission.", "info");
+                      infoToast("Please log in before creating a mission.");
                     }}
                   >
                     Create new Mission
@@ -84,14 +84,14 @@ const Navigation = ({
                 id="basic-nav-dropdown"
                 menuVariant="dark"
               >
-                {!loginCheckClient && (
-                  <NavDropdown.Item as={NavLink} to="/account/client/login">
-                    Client Login
-                  </NavDropdown.Item>
-                )}
                 {!loginCheckMember && (
                   <NavDropdown.Item as={NavLink} to="/account/member/login">
                     Member Login
+                  </NavDropdown.Item>
+                )}
+                {!loginCheckClient && (
+                  <NavDropdown.Item as={NavLink} to="/account/client/login">
+                    Client Login
                   </NavDropdown.Item>
                 )}
                 {loginCheckClient && (
@@ -105,14 +105,14 @@ const Navigation = ({
                   </NavDropdown.Item>
                 )}
                 <NavDropdown.Divider />
-                {loginCheckClient && (
-                  <NavDropdown.Item onClick={logOutCli}>
-                    Client Logout
-                  </NavDropdown.Item>
-                )}
                 {loginCheckMember && (
                   <NavDropdown.Item onClick={logOutMem}>
                     Member Logout
+                  </NavDropdown.Item>
+                )}
+                {loginCheckClient && (
+                  <NavDropdown.Item onClick={logOutCli}>
+                    Client Logout
                   </NavDropdown.Item>
                 )}
               </NavDropdown>

@@ -1,5 +1,5 @@
 import React from "react";
-import usePagination from "../../Hooks/usePagination";
+import usePagination from "../../utils/hooks/usePagination";
 import styles from "./css/AllMemberList.module.css";
 import MemberCard from "./cardInfo/MemberCard";
 import Arrow from "../UI/Arrow";

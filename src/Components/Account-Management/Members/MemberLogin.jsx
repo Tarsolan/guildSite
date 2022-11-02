@@ -2,15 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./css/memberLogin.module.css";
+import { successToast, errorToast } from "../../../utils/hooks/useToast";
+import { memberLogin } from "../../../api/services/members/memberLogin";
 
-const MemberLogin = ({
-  memberLogin,
-  members,
-  setMember,
-  setSelect,
-  setLogin,
-  toast,
-}) => {
+const MemberLogin = ({ members, handleLogin }) => {
   const [title, setTitle] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,19 +27,18 @@ const MemberLogin = ({
     if (!match) {
       setTitle("");
       setPassword("");
-      return toast("Invalid entry. That member does not exist.", "error");
+      return errorToast("Invalid entry. That member does not exist.");
     }
-    
+
     let loginStatus = await memberLogin({ title, password });
 
     if (loginStatus) {
-      toast(`Login confirmed. Welcome, ${title}.`, "success");
-      setLogin(true);
-      setMember(selectedMember.member_id);
-      setSelect(selectedMember.member_id);
+      successToast(`Login confirmed. Welcome, ${title}.`);
+      handleLogin(selectedMember.member_id);
+
       goToMemberInfo();
     } else {
-      toast(`Invalid password. Please try again.`, "error");
+      errorToast(`Invalid password. Please try again.`);
       setPassword("");
     }
   };

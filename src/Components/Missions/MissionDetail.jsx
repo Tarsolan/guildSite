@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./css/MissionDetail.module.css";
-import stamp from "../../pictures/complete_2.png";
-import pushPin from "../../pictures/push_pin.png";
+import stamp from "../../utils/images/complete_2.png";
+import pushPin from "../../utils/images/push_pin.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import MemberInfo from "../Members/cardInfo/SingleMemberInfo";
 import Reports from "./Reports";
+import { errorToast } from "../../utils/hooks/useToast";
 
 const MissionDetail = ({
   mission,
@@ -13,7 +14,6 @@ const MissionDetail = ({
   handleSelectMem,
   memberInfo,
   loginCheck,
-  toast,
   clientCheck,
   clientInfo,
   selectedMember,
@@ -51,7 +51,6 @@ const MissionDetail = ({
               loadMem={loadMem}
               onReportEdit={onReportEdit}
               member={memberInfo}
-              toast={toast}
             />
           );
         })}
@@ -65,17 +64,17 @@ const MissionDetail = ({
     if (loginCheck) {
       navigate(`/missions/info/${mission_num}/reports/new`);
     } else {
-      toast("Please log in as a member before filing a report.", "error");
+      errorToast("Please log in as a member before filing a report.");
     }
   };
 
   const goToEditMission = () => {
     if (!clientCheck) {
-      toast("Please log in as the client before editing the mission.", "error");
+      errorToast("Please log in as the client before editing the mission.");
       return;
     }
     if (clientInfo.organization !== organization) {
-      toast(`Sorry, but only ${organization} can edit this mission.`, "error");
+      errorToast(`Sorry, but only ${organization} can edit this mission.`);
     } else {
       navigate(`/missions/info/${mission_num}/edit`);
     }

@@ -1,6 +1,6 @@
 import React from "react";
-import guild_new from "../../pictures/guild_new.jpg";
-import guild_old from "../../pictures/guild_old.jpg";
+import guild_new from "../../utils/images/guild_new.avif";
+import guild_old from "../../utils/images/guild_old.jpg";
 import styles from "./css/about.module.css";
 
 const About = () => {

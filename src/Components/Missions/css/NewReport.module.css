@@ -1,5 +1,5 @@
 #reportBackground {
-  background: url("../../../pictures/cork.jpg");
+  background: url("../../../utils/images/cork.avif");
   background-size: auto;
   margin: 3% 20%;
   border: 5px solid black;
@@ -9,7 +9,7 @@
 }
 
 #reportPage {
-  background: url(../../../pictures/old_paper_1.jpg);
+  background: url(../../../utils/images/old_paper_1.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   margin: 2% 20%;

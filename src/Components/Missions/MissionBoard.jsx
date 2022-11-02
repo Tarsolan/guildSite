@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import usePagination from "../../Hooks/usePagination";
+import usePagination from "../../utils/hooks/usePagination";
 import styles from "./css/MissionBoard.module.css";
 
 import Mission from "./Mission";

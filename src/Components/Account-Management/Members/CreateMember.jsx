@@ -1,8 +1,9 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/createMember.module.css";
+import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
-const CreateMember = ({ races, specializations, members, onAdd, toast }) => {
+const CreateMember = ({ races, specializations, members, onAdd }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +23,15 @@ const CreateMember = ({ races, specializations, members, onAdd, toast }) => {
 
   const raceNames = () => {
     return (
-      <>
-        <option></option>
-        {races.map((race) => {
-          return <option key={race.race_id}>{race.race}</option>;
-        })}
-        ;
-      </>
+      races && (
+        <>
+          <option></option>
+          {races.map((race) => {
+            return <option key={race.race_id}>{race.race}</option>;
+          })}
+          ;
+        </>
+      )
     );
   };
 
@@ -59,61 +62,39 @@ const CreateMember = ({ races, specializations, members, onAdd, toast }) => {
         }}
       >
         <option></option>;
-        {specializations.map((spec) => {
-          return <option key={spec.spec_id}>{spec.spec_name}</option>;
-        })}
+        {specializations &&
+          specializations.map((spec) => {
+            return <option key={spec.spec_id}>{spec.spec_name}</option>;
+          })}
         ;
       </select>
     );
-  };
-
-  //   const addSpec = () => {
-  //     return (
-  //       <div className="form-group col-md-4">
-  //         <label htmlFor="inputSpec">Specialization</label>
-  //         <select
-  //           id="inputSpec"
-  //           className="form-control"
-  //           onChange={(e) => {
-  //             setSpec(e.target.value);
-  //           }}
-  //         >
-  //           {specNames}
-  //         </select>
-  //       </div>
-  //     );
-  //   };
-
-  const getNextMemberID = () => {
-    return members[members.length - 1].member_id + 1;
   };
 
   const submitData = async (e) => {
     let returnFlag = false;
     e.preventDefault();
 
-    const nextID = getNextMemberID();
+    // const nextID = getNextMemberID();
 
     // Validate what needs to be validated before saving anything!
     members.map((member) => member.title === title && (returnFlag = true));
 
     if (returnFlag) {
-      toast(
-        "Sorry, that title is already in use. Please use another title.",
-        "error"
+      errorToast(
+        "Sorry, that title is already in use. Please use another title."
       );
       return;
     }
     if (!captcha) {
-      toast(
-        "You, my friend, are a robot. We don't take kindly to your kind around here.",
-        "error"
+      errorToast(
+        "You, my friend, are a robot. We don't take kindly to your kind around here."
       );
       return;
     }
 
     if (password !== passwordConfirm) {
-      toast("Invalid entry. The two passwords do not match.", "error");
+      errorToast("Invalid entry. The two passwords do not match.");
       return;
     }
     // Member Data -- to member
@@ -148,16 +129,10 @@ const CreateMember = ({ races, specializations, members, onAdd, toast }) => {
         filterDescription,
         raceID,
       },
-      { nextID, specArr }
+      specArr
     );
-    // const newMemRes = await fetch(API_ENDPOINT + "/members");
-    // const newMemData = await newMemRes.text();
-    // const data = JSON.parse(newMemData);
-    // const nextID = data[data.length - 1].member_id;
-    // console.log(nextID);
-    // await onAddSpec();
-    // Spec Data -- to member_spec
-    toast("Account Created.", "success");
+
+    successToast("Account Created.");
     goToMembers();
   };
 
