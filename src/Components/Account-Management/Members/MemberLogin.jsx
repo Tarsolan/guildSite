@@ -10,7 +10,7 @@ const MemberLogin = ({ members, handleLogin }) => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const goToMemberInfo = () => navigate("/account/member/info");
+  const goToMemberInfo = () => navigate("/members/account/info");
 
   const confirmLogin = async (e) => {
     let match = false;

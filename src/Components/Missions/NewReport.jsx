@@ -28,7 +28,7 @@ const NewReport = ({ mission, member, onPost }) => {
     // var filterDetails = reportDetails.replace(/'/g, "''");
 
     if (reportDetails !== "") {
-      onPost({ mission_num, member_id, reportDetails });
+      onPost({ mission_num, member_id, report_details: reportDetails });
 
       successToast("Report filed successfully.");
       goToMissionPage(mission_num);

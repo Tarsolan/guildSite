@@ -15,6 +15,8 @@ const EditMission = ({ mission, onEdit }) => {
     payout,
     organization,
     deadline_date,
+    reports,
+    client_id,
   } = mission;
 
   const [newName, setNewName] = useState(job_name);
@@ -37,11 +39,15 @@ const EditMission = ({ mission, onEdit }) => {
     if (newName !== "" && newDesc !== "" && newDate !== "") {
       onEdit({
         mission_num,
-        newName,
-        newDesc,
-        newPay,
-        newDate,
-        status,
+        job_name: newName,
+        job_description: newDesc,
+        payout: newPay,
+        deadline_date: newDate,
+        contact_name,
+        organization,
+        complete: status,
+        reports,
+        client_id,
       });
 
       successToast("Mission Edited.");

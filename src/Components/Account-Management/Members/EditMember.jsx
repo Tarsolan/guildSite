@@ -3,15 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./css/editMember.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
-const EditMember = ({
-  races,
-  specializations,
-  ranks,
-  member,
-  members,
-  onEdit,
-}) => {
+const EditMember = ({ member, members, onEdit, miscData }) => {
   const { member_id, full_name, desc, title, rank_name, race, spec } = member;
+  const { races, ranks, specializations } = miscData;
 
   var name = full_name.split(" ");
 
@@ -28,7 +22,7 @@ const EditMember = ({
   const [captcha, setCaptcha] = useState(false);
 
   const navigate = useNavigate();
-  const goToAccountDetail = () => navigate("/account/member/info");
+  const goToAccountDetail = () => navigate("/members/account/info");
 
   const raceNames = () => {
     return (

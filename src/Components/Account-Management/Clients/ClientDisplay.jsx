@@ -18,7 +18,7 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
   // let date = new Date(join_date).toLocaleDateString();
 
   const navigate = useNavigate();
-  const goToEditDetails = () => navigate("/account/client/info/edit");
+  const goToEditDetails = () => navigate("/clients/info/edit");
   const goToMissionPage = (num) => navigate(`/missions/info/${num}`);
 
   const missionSelect = (num) => {

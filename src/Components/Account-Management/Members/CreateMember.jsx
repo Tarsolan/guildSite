@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./css/createMember.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
-const CreateMember = ({ races, specializations, members, onAdd }) => {
+const CreateMember = ({ members, onAdd, miscData }) => {
+  const { races, specializations } = miscData;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");

@@ -19,7 +19,7 @@ const MemberDisplay = ({ member, selectMission }) => {
   let date = new Date(join_date).toLocaleDateString();
 
   const navigate = useNavigate();
-  const goToEditDetails = () => navigate("/account/member/info/edit");
+  const goToEditDetails = () => navigate("/members/account/info/edit");
   const goToMissionPage = (num) => navigate(`/missions/info/${num}`);
 
   // var missionNames = [];

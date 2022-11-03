@@ -22,7 +22,7 @@ const CreateClient = ({ onAdd }) => {
   };
 
   const navigate = useNavigate();
-  const goToClientInfo = () => navigate("/account/client/info");
+  const goToClientInfo = () => navigate("/clients/info");
 
   const addClient = async (e) => {
     let returnFlag = false;

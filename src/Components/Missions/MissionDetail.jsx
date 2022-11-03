@@ -10,7 +10,6 @@ import { errorToast } from "../../utils/hooks/useToast";
 
 const MissionDetail = ({
   mission,
-  members,
   handleSelectMem,
   memberInfo,
   loginCheck,

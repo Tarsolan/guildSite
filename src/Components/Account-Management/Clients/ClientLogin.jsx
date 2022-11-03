@@ -10,7 +10,7 @@ const ClientLogin = ({ handleLogin }) => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const goToClientInfo = () => navigate("/account/client/info");
+  const goToClientInfo = () => navigate("/clients/info");
 
   // STILL NEED PASSWORD VALIDATION
   const confirmLogin = async (e) => {

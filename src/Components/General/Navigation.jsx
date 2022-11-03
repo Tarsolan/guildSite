@@ -15,8 +15,8 @@ const Navigation = ({
   // const [login, setLogin] = useState(false);
 
   const navigate = useNavigate();
-  const goToLoginPage = () => navigate("/account/member/login");
-  const goToClientLoginPage = () => navigate("/account/client/login");
+  const goToLoginPage = () => navigate("/members/account/login");
+  const goToClientLoginPage = () => navigate("/clients/login");
 
   const logOutMem = () => {
     goToLoginPage();
@@ -70,7 +70,7 @@ const Navigation = ({
                 ) : (
                   <NavDropdown.Item
                     as={NavLink}
-                    to="/account/client/login"
+                    to="/clients/login"
                     onClick={() => {
                       infoToast("Please log in before creating a mission.");
                     }}
@@ -85,22 +85,22 @@ const Navigation = ({
                 menuVariant="dark"
               >
                 {!loginCheckMember && (
-                  <NavDropdown.Item as={NavLink} to="/account/member/login">
+                  <NavDropdown.Item as={NavLink} to="/members/account/login">
                     Member Login
                   </NavDropdown.Item>
                 )}
                 {!loginCheckClient && (
-                  <NavDropdown.Item as={NavLink} to="/account/client/login">
+                  <NavDropdown.Item as={NavLink} to="/clients/login">
                     Client Login
                   </NavDropdown.Item>
                 )}
                 {loginCheckClient && (
-                  <NavDropdown.Item as={NavLink} to="/account/client/info">
+                  <NavDropdown.Item as={NavLink} to="/clients/info">
                     Details - Client
                   </NavDropdown.Item>
                 )}
                 {loginCheckMember && (
-                  <NavDropdown.Item as={NavLink} to="/account/member/info">
+                  <NavDropdown.Item as={NavLink} to="/members/account/info">
                     Details - Member
                   </NavDropdown.Item>
                 )}

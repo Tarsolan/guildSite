@@ -10,7 +10,7 @@ const Reports = ({ report, loadMem, onReportEdit, member }) => {
   const submitData = async (e) => {
     e.preventDefault();
     if (newDetail !== "") {
-      onReportEdit({ details: newDetail }, report.report_id);
+      onReportEdit({ details: newDetail }, report);
       setEditMode(false);
     } else errorToast("Error! This field cannot be blank!");
   };

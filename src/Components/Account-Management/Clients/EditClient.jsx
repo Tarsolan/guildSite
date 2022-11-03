@@ -29,7 +29,7 @@ const EditClient = ({ client, onEdit }) => {
   };
 
   const navigate = useNavigate();
-  const goToClientInfo = () => navigate("/account/client/info");
+  const goToClientInfo = () => navigate("/clients/info");
 
   const editClient = async (e) => {
     let returnFlag = false;
@@ -57,15 +57,15 @@ const EditClient = ({ client, onEdit }) => {
       return;
     }
 
-    var desc = newDescription.replace(/'/g, "''");
-    var orgNameFilter = newOrgName.replace(/'/g, "''");
+    // var desc = newDescription.replace(/'/g, "''");
+    //var orgNameFilter = newOrgName.replace(/'/g, "''");
 
     await onEdit({
       client_id,
       first_name: firstName,
       last_name: lastName,
-      organization: orgNameFilter,
-      description: desc,
+      organization: organization,
+      description: description,
       status: status,
       missions: missions,
     });
