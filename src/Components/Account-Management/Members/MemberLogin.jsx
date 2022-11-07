@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import styles from "./css/memberLogin.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 import { memberLogin } from "../../../api/services/members/memberLogin";
-import AuthContext from "../../../utils/providers/MemberAuthContext";
+import AuthContext from "../../../utils/providers/MemberContextControl";
 
 const MemberLogin = ({ members, handleLogin }) => {
   const [title, setTitle] = useState("");

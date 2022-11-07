@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../utils/providers/MemberAuthContext";
+import AuthContext from "../../../utils/providers/MemberContextControl";
 import styles from "./css/memberDisplay.module.css";
 
 const MemberDisplay = ({ selectMission }) => {

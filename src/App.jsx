@@ -30,7 +30,7 @@ import PageNotFound from "./Components/General/PageNotFound";
 import ClientRoutes from "./Components/Routes/ClientRoutes";
 import MemberRoutes from "./Components/Routes/MemberRoutes";
 import MissionRoutes from "./Components/Routes/MissionRoutes";
-import AuthContext from "./utils/providers/MemberAuthContext";
+import AuthContext from "./utils/providers/MemberContextControl";
 
 function App() {
   const [members, setMembers] = useState([]); // Member List

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { successToast } from "../../../utils/hooks/useToast";
-import AuthContext from "../../../utils/providers/MemberAuthContext";
+import AuthContext from "../../../utils/providers/MemberContextControl";
 import styles from "./css/SingleMemberInfo.module.css";
 
 const SingleMemberInfo = ({ member, pointEdit }) => {
