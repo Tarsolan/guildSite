@@ -4,9 +4,9 @@ import SingleMemberInfo from "./SingleMemberInfo";
 import styles from "./css/MembersInfo.module.css";
 import Arrow from "../../UI/Arrow";
 
-const MembersInfo = ({ members, selectedMember }) => {
+const MembersInfo = ({ members, selectedMember, pointEdit }) => {
   const paginate = usePagination(members, 1);
-  console.log(paginate);
+  // console.log(paginate);
 
   const findMember = () => {
     let id_count = 1;
@@ -29,7 +29,7 @@ const MembersInfo = ({ members, selectedMember }) => {
     <div className={styles.singleMember}>
       <Arrow side={"left"} paginate={paginate} size={80} />
       {paginate.currentData().map((member) => {
-        return <SingleMemberInfo member={member} />;
+        return <SingleMemberInfo member={member} pointEdit={pointEdit} />;
       })}
       <Arrow side={"right"} paginate={paginate} size={80} />
     </div>

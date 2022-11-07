@@ -11,7 +11,7 @@ const MissionBoard = ({ missions, handleSelect }) => {
   const goToMissionPage = (num) => navigate(`/missions/info/${num}`);
 
   const onSelect = (mission) => {
-    handleSelect(mission);
+    handleSelect(mission.mission_num);
     goToMissionPage(mission.mission_num);
   };
 

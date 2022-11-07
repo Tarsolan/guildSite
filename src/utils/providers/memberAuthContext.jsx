@@ -2,31 +2,34 @@ import React from "react";
 import { useState } from "react";
 
 const AuthContext = React.createContext({
-  token: "",
-  isLoggedIn: false,
-  login: (token) => {},
+  member: {},
+  isAdmin: false,
+  login: (member) => {},
   logout: () => {},
-  username: "",
-  getUser: (username) => {},
 });
 
 // storage can go here
 
-const memberAuthContext = (props) => {
-  const [title, setTitle] = useState("");
+export const MemberAuthContext = (props) => {
+  const [member, setMember] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
 
   const loginHandler = (member) => {
-    setTitle(member.title);
-    member.admin && setIsAdmin(true);
+    setMember(member);
+    member.is_admin && setIsAdmin(true);
   };
 
   const logoutHandler = () => {
-    setTitle("");
+    setMember({});
     setIsAdmin(false);
   };
 
-  const contextValue = {};
+  const contextValue = {
+    member: member,
+    isAdmin: isAdmin,
+    login: loginHandler,
+    logout: logoutHandler,
+  };
 
   return (
     <AuthContext.Provider value={contextValue}>
@@ -35,4 +38,4 @@ const memberAuthContext = (props) => {
   );
 };
 
-export default memberAuthContext;
+export default AuthContext;

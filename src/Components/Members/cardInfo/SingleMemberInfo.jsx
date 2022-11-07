@@ -1,7 +1,12 @@
 import React from "react";
+import { useState } from "react";
+import { useContext } from "react";
+import { successToast } from "../../../utils/hooks/useToast";
+import AuthContext from "../../../utils/providers/MemberAuthContext";
 import styles from "./css/SingleMemberInfo.module.css";
 
-const SingleMemberInfo = ({ member }) => {
+const SingleMemberInfo = ({ member, pointEdit }) => {
+  const authCtx = useContext(AuthContext);
   const {
     member_id,
     full_name,
@@ -15,6 +20,14 @@ const SingleMemberInfo = ({ member }) => {
     point_total,
   } = member;
   const date = new Date(join_date);
+  const [newPointTotal, setNewPointTotal] = useState(point_total);
+
+  const changePoints = async (e) => {
+    e.preventDefault();
+    pointEdit(newPointTotal, member_id);
+
+    successToast("Point total updated.");
+  };
 
   // Don't forget race!!
   return (
@@ -50,10 +63,25 @@ const SingleMemberInfo = ({ member }) => {
               <span>Missions Completed:</span>
               <span>{completed ? completed : `0`}</span>
             </div>
-            <div>
-              <span>Point Total:</span>
-              <span>{point_total}</span>
-            </div>
+
+            {authCtx.isAdmin ? (
+              <form className={styles.pointForm} onSubmit={changePoints}>
+                <label>Point Total:</label>
+                <input
+                  type="number"
+                  value={newPointTotal}
+                  onChange={(e) => {
+                    setNewPointTotal(e.target.value);
+                  }}
+                />
+              </form>
+            ) : (
+              <div>
+                <span>Point Total:</span>
+                <span>{point_total}</span>
+              </div>
+            )}
+
             <div>
               <span>Member Since:</span>
               <span>{date.toLocaleDateString()}</span>

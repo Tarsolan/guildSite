@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./css/memberLogin.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 import { memberLogin } from "../../../api/services/members/memberLogin";
+import AuthContext from "../../../utils/providers/MemberAuthContext";
 
 const MemberLogin = ({ members, handleLogin }) => {
   const [title, setTitle] = useState("");
   const [password, setPassword] = useState("");
+  const authCtx = useContext(AuthContext);
 
   const navigate = useNavigate();
   const goToMemberInfo = () => navigate("/members/account/info");
@@ -34,7 +36,7 @@ const MemberLogin = ({ members, handleLogin }) => {
 
     if (loginStatus) {
       successToast(`Login confirmed. Welcome, ${title}.`);
-      handleLogin(selectedMember.member_id);
+      handleLogin(selectedMember);
 
       goToMemberInfo();
     } else {

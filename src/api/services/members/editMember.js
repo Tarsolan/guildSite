@@ -19,4 +19,16 @@ const editMember = async (member, specs) => {
   return newMem;
 };
 
-export { editMember };
+const editMemberPoints = async (point_total, member_id) => {
+  await fetch(API_ENDPOINT + "/members/edit/points/" + member_id, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ point_total }),
+  });
+
+  //const newMem = await getMember(member_id);
+
+  // return newMem;
+};
+
+export { editMember, editMemberPoints };

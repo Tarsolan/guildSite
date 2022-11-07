@@ -8,7 +8,7 @@ import MemberListTable from "./tableInfo/MemberListTable";
 import ViewSwitcher from "../UI/ViewSwitcher";
 
 const Members = ({ members, handleSelect }) => {
-  const [viewState, setViewState] = useState("list");
+  const [viewState, setViewState] = useState("card");
 
   const paginate = usePagination(members, 6);
   // console.log(`Current page: ${paginate.currentPage}`);

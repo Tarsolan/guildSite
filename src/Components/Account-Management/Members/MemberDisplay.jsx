@@ -1,8 +1,11 @@
 import React from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../utils/providers/MemberAuthContext";
 import styles from "./css/memberDisplay.module.css";
 
-const MemberDisplay = ({ member, selectMission }) => {
+const MemberDisplay = ({ selectMission }) => {
+  const authCtx = useContext(AuthContext);
   const {
     member_id,
     full_name,
@@ -15,7 +18,7 @@ const MemberDisplay = ({ member, selectMission }) => {
     image_url,
     completed,
     missionDetails,
-  } = member;
+  } = authCtx.member;
   let date = new Date(join_date).toLocaleDateString();
 
   const navigate = useNavigate();
@@ -49,6 +52,7 @@ const MemberDisplay = ({ member, selectMission }) => {
   return (
     <div className={styles.memberDisplay}>
       <h2>Account Details</h2>
+      {authCtx.isAdmin && <p>I AM ADMIN</p>}
       <div className={styles.container}>
         <div className={styles.leftSide}>
           <div className={styles.displayRow}>

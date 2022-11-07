@@ -5,7 +5,7 @@ import styles from "./css/SearchMission.module.css";
 import { AiOutlineSearch } from "react-icons/ai";
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
-const SearchMission = ({ handleSelect, missions }) => {
+const SearchMission = ({ handleSelect }) => {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState(false);
 
@@ -36,12 +36,7 @@ const SearchMission = ({ handleSelect, missions }) => {
   };
 
   const onSelect = (num) => {
-    missions.forEach((mission) => {
-      if (mission.mission_num === num) {
-        handleSelect(mission);
-      }
-    });
-
+    handleSelect(num);
     goToMissionPage(num);
   };
 

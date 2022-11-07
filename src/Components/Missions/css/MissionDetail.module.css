@@ -243,3 +243,9 @@
     margin: 1% auto;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .reportContainer {
+    grid-template-columns: 1fr;
+  }
+}

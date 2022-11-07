@@ -5,6 +5,7 @@ import logo from "../../utils/images/guild_logo.png";
 import { AiOutlineSearch } from "react-icons/ai";
 // import styles from "./css/navigation.module.css";
 import { infoToast } from "../../utils/hooks/useToast";
+import { VscListFlat } from "react-icons/vsc";
 
 const Navigation = ({
   loginCheckClient,
@@ -30,7 +31,7 @@ const Navigation = ({
 
   return (
     <nav>
-      <Navbar bg="custom" expand="xl" variant="guild">
+      <Navbar bg="custom" expand="xl" variant="guild" collapseOnSelect>
         <Container>
           <Navbar.Brand>
             <img src={logo} alt="Guild-Logo" id="guild-logo" />
@@ -39,14 +40,16 @@ const Navigation = ({
               <span>Adventurer's Guild</span>
             </Link>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <VscListFlat color="white" />
+          </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav" color="">
             <Nav className="me-auto">
-              <Nav.Link as={NavLink} to="/about">
+              <Nav.Link as={NavLink} to="/about" eventKey="1">
                 About the Guild
               </Nav.Link>
 
-              <Nav.Link as={NavLink} to="/members">
+              <Nav.Link as={NavLink} to="/members" eventKey="2">
                 Member Services
               </Nav.Link>
 
@@ -54,6 +57,7 @@ const Navigation = ({
                 title="Mission Services"
                 id="basic-nav-dropdown"
                 menuVariant="dark"
+                eventKey="3"
               >
                 <NavDropdown.Item as={NavLink} to="/missions/all">
                   Mission Board
@@ -83,6 +87,7 @@ const Navigation = ({
                 title="Account Management"
                 id="basic-nav-dropdown"
                 menuVariant="dark"
+                eventKey="4"
               >
                 {!loginCheckMember && (
                   <NavDropdown.Item as={NavLink} to="/members/account/login">

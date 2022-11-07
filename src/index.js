@@ -4,10 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { MemberAuthContext } from "./utils/providers/MemberAuthContext";
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
-root.render(<App />);
+root.render(
+  <MemberAuthContext>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </MemberAuthContext>
+);
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(

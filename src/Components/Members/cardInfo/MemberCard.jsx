@@ -8,7 +8,7 @@ const MemberCard = ({ member, handleSelect }) => {
 
   const navigate = useNavigate();
   //const goToMemberPage = (name) => navigate(`/members/info/${name}`);
-  const goToMemberPage = (id) => navigate(`/members/info/${id}`);
+  const goToMemberPage = (id) => navigate(`/members/info`);
 
   const onSelect = (member) => {
     handleSelect(member);

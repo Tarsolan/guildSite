@@ -2,17 +2,17 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import About from "./Components/General/About";
 import Navigation from "./Components/General/Navigation";
-import MissionBoard from "./Components/Missions/MissionBoard";
-import NewMission from "./Components/Missions/NewMission";
 import { infoToast, ToastContainer } from "./utils/hooks/useToast";
 // import SideNav from "./Components/General/SideNav";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ClientLogin from "./Components/Account-Management/Clients/ClientLogin";
 import { addClient } from "./api/services/clients/addClient";
 import { editClient } from "./api/services/clients/editClient";
 import { addMember } from "./api/services/members/addMember";
-import { editMember } from "./api/services/members/editMember";
+import {
+  editMember,
+  editMemberPoints,
+} from "./api/services/members/editMember";
 import { getMembers } from "./api/services/members/getMembers";
 import {
   getRaces,
@@ -24,16 +24,13 @@ import { addReport } from "./api/services/missions/addReport";
 import { editMission } from "./api/services/missions/editMission";
 import { editReport } from "./api/services/missions/editReport";
 import { getMissions } from "./api/services/missions/getMissions";
-import MemberLogin from "./Components/Account-Management/Members/MemberLogin";
 import Background from "./Components/General/Background";
 import Footer from "./Components/General/Footer";
 import PageNotFound from "./Components/General/PageNotFound";
-import EditMission from "./Components/Missions/EditMission";
-import MissionDetail from "./Components/Missions/MissionDetail";
-import NewReport from "./Components/Missions/NewReport";
-import SearchMission from "./Components/Missions/SearchMission";
 import ClientRoutes from "./Components/Routes/ClientRoutes";
 import MemberRoutes from "./Components/Routes/MemberRoutes";
+import MissionRoutes from "./Components/Routes/MissionRoutes";
+import AuthContext from "./utils/providers/MemberAuthContext";
 
 function App() {
   const [members, setMembers] = useState([]); // Member List
@@ -45,6 +42,7 @@ function App() {
   const [currentMemberID, setCurrentMemberID] = useState(false); // Stores info on currently logged in member
   const [selectedMemberID, setSelectedMemberID] = useState(false); // Stores info on currently selected member (for info page)
   const [selectedMissionID, setSelectedMissionID] = useState(false); // Stores info on currently selected mission (for info page)
+  const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     async function getMiscData() {
@@ -91,10 +89,11 @@ function App() {
   );
 
   // Member Stuff
-  const memberLogin = (member_id) => {
-    setCurrentMemberID(member_id);
-    setSelectedMemberID(member_id);
+  const memberLogin = (member) => {
+    setCurrentMemberID(member.member_id);
+    setSelectedMemberID(member.member_id);
     setMemberLoggedIn(true);
+    authCtx.login(member);
   };
 
   const memberLogout = () => {
@@ -103,6 +102,7 @@ function App() {
     );
     setCurrentMemberID(false);
     setMemberLoggedIn(false);
+    authCtx.logout();
   };
 
   const newMember = async (member, specArr) => {
@@ -119,7 +119,18 @@ function App() {
         mem.member_id === editedMem.member_id ? editedMem : mem
       )
     );
-    // getMissionData();
+    getMissionData();
+  };
+
+  const memberPointEdit = async (point_total, member_id) => {
+    await editMemberPoints(point_total, member_id);
+    setMembers(
+      members.map((mem) =>
+        mem.member_id === member_id
+          ? { ...selectedMember, point_total: point_total }
+          : mem
+      )
+    );
   };
 
   const handleSelectMember = (member) => {
@@ -183,8 +194,8 @@ function App() {
     );
   };
 
-  const handleSelectMission = (mission) => {
-    setSelectedMissionID(mission.mission_num);
+  const handleSelectMission = (mission_num) => {
+    setSelectedMissionID(mission_num);
   };
 
   // Reports
@@ -218,6 +229,7 @@ function App() {
     selectMission: setSelectedMissionID,
     onAdd: newMember,
     onEdit: memberEdit,
+    pointEdit: memberPointEdit,
   };
 
   const clientPackage = {
@@ -228,6 +240,21 @@ function App() {
     createClient,
     editClient: clientEdit,
     clientLoggedIn,
+  };
+
+  const missionPackage = {
+    missions,
+    clientInfo: currentClient,
+    handleSelectMem: handleSelectMember,
+    handleSelect: handleSelectMission,
+    selectedMember: selectedMember,
+    onPost: addMissionReport,
+    onReportEdit: editMissionReport,
+    memberInfo: currentMemberID,
+    mission: selectedMission,
+    onEdit: missionEdit,
+    onAdd: createMission,
+    member: currentMember,
   };
 
   return (
@@ -256,80 +283,11 @@ function App() {
             path="/clients/*"
             element={<ClientRoutes clientPackage={clientPackage} />}
           />
-
           <Route
-            path="/missions/all"
-            element={
-              <MissionBoard
-                missions={missions}
-                handleSelect={handleSelectMission}
-              />
-            }
-          />
-          <Route
-            path="/missions/search"
-            element={
-              <SearchMission
-                missions={missions}
-                handleSelect={handleSelectMission}
-              />
-            }
-          />
-          <Route
-            path="/missions/info/:id"
-            element={
-              <MissionDetail
-                mission={selectedMission}
-                loginCheck={memberLoggedIn}
-                clientCheck={clientLoggedIn}
-                clientInfo={currentClient}
-                handleSelectMem={handleSelectMember}
-                selectedMember={selectedMember}
-                onReportEdit={editMissionReport}
-                memberInfo={currentMemberID}
-              />
-            }
+            path="/missions/*"
+            element={<MissionRoutes missionPackage={missionPackage} />}
           />
 
-          <Route
-            path="missions/info/:id/edit"
-            element={
-              <EditMission mission={selectedMission} onEdit={missionEdit} />
-            }
-          />
-
-          {clientLoggedIn ? (
-            <Route
-              path="/missions/create"
-              element={
-                <NewMission onAdd={createMission} client={currentClient} />
-              }
-            />
-          ) : (
-            <Route
-              path="/missions/create"
-              element={<ClientLogin handleLogin={clientLogin} />}
-            />
-          )}
-          {memberLoggedIn ? (
-            <Route
-              path="/missions/info/:id/reports/new"
-              element={
-                <NewReport
-                  mission={selectedMission}
-                  member={currentMember}
-                  onPost={addMissionReport}
-                />
-              }
-            />
-          ) : (
-            <Route
-              path="/missions/info/:id/reports/new"
-              element={
-                <MemberLogin members={members} handleLogin={memberLogin} />
-              }
-            />
-          )}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>

@@ -12,8 +12,6 @@ const MissionDetail = ({
   mission,
   handleSelectMem,
   memberInfo,
-  loginCheck,
-  clientCheck,
   clientInfo,
   selectedMember,
   onReportEdit,
@@ -60,7 +58,7 @@ const MissionDetail = ({
 
   const navigate = useNavigate();
   const goToFileReport = () => {
-    if (loginCheck) {
+    if (memberInfo) {
       navigate(`/missions/info/${mission_num}/reports/new`);
     } else {
       errorToast("Please log in as a member before filing a report.");
@@ -68,7 +66,7 @@ const MissionDetail = ({
   };
 
   const goToEditMission = () => {
-    if (!clientCheck) {
+    if (!clientInfo) {
       errorToast("Please log in as the client before editing the mission.");
       return;
     }

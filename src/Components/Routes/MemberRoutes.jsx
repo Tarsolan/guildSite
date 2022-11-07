@@ -19,6 +19,7 @@ const MemberRoutes = ({ memberPackage }) => {
     selectMission,
     onAdd,
     onEdit,
+    pointEdit,
     miscData,
   } = memberPackage;
 
@@ -31,9 +32,13 @@ const MemberRoutes = ({ memberPackage }) => {
         }
       />
       <Route
-        path="/info/:id"
+        path="/info"
         element={
-          <MembersInfo selectedMember={selectedMember} members={members} />
+          <MembersInfo
+            selectedMember={selectedMember}
+            members={members}
+            pointEdit={pointEdit}
+          />
         }
       />
       <Route
