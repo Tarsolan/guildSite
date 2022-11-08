@@ -1,4 +1,5 @@
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+// const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const editClient = async (client) => {
   await fetch(API_ENDPOINT + "/clients/edit/" + client.client_id, {

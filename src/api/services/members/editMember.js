@@ -1,5 +1,6 @@
 import { getMember } from "./getMembers";
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+// const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const editMember = async (member, specs) => {
   await fetch(API_ENDPOINT + "/members/edit", {

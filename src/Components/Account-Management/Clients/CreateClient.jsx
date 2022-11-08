@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/CreateClient.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+// const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const CreateClient = ({ onAdd }) => {
   const [firstName, setFirstName] = useState("");

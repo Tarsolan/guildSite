@@ -2,7 +2,8 @@ import { React, useState } from "react";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/EditClient.module.css";
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+// const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const EditClient = ({ client, onEdit }) => {
   const {
