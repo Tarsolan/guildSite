@@ -1,5 +1,5 @@
 import React from "react";
-import guild_new from "../../utils/images/guild_new.avif";
+import guild_new from "../../utils/images/guild_new.jpg";
 import guild_old from "../../utils/images/guild_old.jpg";
 import styles from "./css/about.module.css";
 
