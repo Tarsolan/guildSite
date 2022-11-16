@@ -24,7 +24,7 @@ import { addReport } from "./api/services/missions/addReport";
 import { editMission } from "./api/services/missions/editMission";
 import { editReport } from "./api/services/missions/editReport";
 import { getMissions } from "./api/services/missions/getMissions";
-import Background from "./Components/General/Background";
+import Background from "./Components/UI/Background";
 import Footer from "./Components/General/Footer";
 import PageNotFound from "./Components/General/PageNotFound";
 import ClientRoutes from "./Components/Routes/ClientRoutes";
@@ -119,6 +119,7 @@ function App() {
         mem.member_id === editedMem.member_id ? editedMem : mem
       )
     );
+    setCurrentMemberID(member.member_id);
     getMissionData();
   };
 

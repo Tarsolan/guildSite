@@ -4,7 +4,16 @@ import styles from "./css/editMember.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
 const EditMember = ({ member, members, onEdit, miscData }) => {
-  const { member_id, full_name, desc, title, rank_name, race, spec } = member;
+  const {
+    member_id,
+    full_name,
+    desc,
+    title,
+    rank_name,
+    race,
+    spec,
+    point_total,
+  } = member;
   const { races, ranks, specializations } = miscData;
 
   var name = full_name.split(" ");
@@ -152,10 +161,11 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
         filterDescription,
         raceID,
         rankID,
+        point_total,
       },
       specArr
     );
-    successToast("Member Account Edited.", "success");
+    successToast("Member Account Edited.");
 
     goToAccountDetail();
   };

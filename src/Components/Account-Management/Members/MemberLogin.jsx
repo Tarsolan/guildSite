@@ -94,7 +94,7 @@ const MemberLogin = ({ members, handleLogin }) => {
           Login
         </button>
       </form>
-      <Link to="/register/member">New here? Register as a member!</Link>
+      <Link to="/member/account/register">New here? Register as a member!</Link>
     </div>
   );
 };

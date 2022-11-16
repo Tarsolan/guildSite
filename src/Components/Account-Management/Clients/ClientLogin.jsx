@@ -91,7 +91,7 @@ const ClientLogin = ({ handleLogin }) => {
           Login
         </button>
       </form>
-      <Link to="/register/client">New here? Register as a new client!</Link>
+      <Link to="/clients/register">New here? Register as a new client!</Link>
     </div>
   );
 };

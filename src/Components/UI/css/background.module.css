@@ -1,6 +1,28 @@
+/* ORIGINAL COLORS */
+/* :root {
+  --main-bg-color_1: rgb(23, 104, 89);
+  --main-bg-color_2: rgb(2, 184, 138);
+} */
+
+:root {
+  --main-bg-color_1: rgb(150, 143, 78);
+  --main-bg-color_2: rgb(2, 165, 111);
+}
+
+.bg {
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+  background-color: var(--main-bg-color_1);
+}
+
 /* Animated BG - Start */
 
-@keyframes slide {
+/* @keyframes slide {
   0% {
     transform: translateX(-25%);
   }
@@ -22,8 +44,8 @@
   animation: slide 7s ease-in-out infinite alternate;
   background-image: linear-gradient(
     -60deg,
-    rgb(23, 104, 89) 50%,
-    rgb(2, 184, 138) 50%
+    var(--main-bg-color_1) 50%,
+    var(--main-bg-color_2) 50%
   );
 
   bottom: 0;
@@ -42,6 +64,6 @@
 
 .bg3 {
   animation-duration: 5s;
-}
+} */
 
 /* Animated BG - End  */
