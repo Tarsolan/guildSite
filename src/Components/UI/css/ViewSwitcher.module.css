@@ -1,3 +1,11 @@
+#switchBox {
+  display: flex;
+  gap: 5%;
+}
+
 #switchBox button {
-  background-color: silver;
+  background-color: var(--window-border);
+  padding: 1%;
+  margin: 1%;
+  border-radius: 8px;
 }

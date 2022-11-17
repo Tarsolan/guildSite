@@ -24,13 +24,13 @@
 .accountSection form button {
   background-color: var(--button-color-login);
   border: 1px solid black;
-  color: black;
+  color: var(--button-text-color);
 }
 
 .accountSection form button:hover {
   background-color: var(--button-color-login-hover);
   border: 1px solid black;
-  color: black;
+  color: var(--button-text-color-hover);
 }
 
 @media only screen and (max-width: 1440px) {

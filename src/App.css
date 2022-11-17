@@ -7,11 +7,13 @@
   --main-bg-color_1: rgb(101, 102, 52);
   --main-bg-color_2: rgb(2, 165, 111);
   --text-color-primary: white;
-  --window-primary: rgba(53, 101, 42, 0.8);
-  --window-border: rgba(224, 207, 51, 0.8);
+  --window-primary: rgb(30, 58, 24);
+  --window-border: rgba(245, 225, 49, 0.993);
   --form-textBox-background: rgba(196, 196, 196, 0.75);
-  --button-color-login: rgb(170, 155, 21);
-  --button-color-login-hover: rgb(114, 104, 12);
+  --button-color-login: rgb(245, 225, 49);
+  --button-text-color: black;
+  --button-color-login-hover: rgb(165, 152, 33);
+  --button-text-color-hover: black;
 }
 
 html,
