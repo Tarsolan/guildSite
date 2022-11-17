@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./css/ClientDisplay.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import MissionTable from "../../UI/MissionTable";
 
 const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
   const {
@@ -14,7 +15,7 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
     missions,
   } = client;
 
-  const [showDetail, setShowDetails] = useState(false);
+  const [showDetail, setShowDetails] = useState(true);
   // let date = new Date(join_date).toLocaleDateString();
 
   const navigate = useNavigate();
@@ -24,34 +25,6 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
   const missionSelect = (num) => {
     handleSelect(num);
     goToMissionPage(num);
-  };
-
-  const missionNames = (missionInfo) => {
-    var missionArr = [];
-    missionInfo.forEach((mission) => {
-      missions.forEach((mission_id) => {
-        if (mission_id === mission.mission_num) {
-          missionArr.push(mission);
-        }
-      });
-    });
-    var missionNames = missionArr.map((mission) => {
-      return (
-        <div
-          onClick={() => missionSelect(mission.mission_num)}
-          className={styles.displayMission}
-          key={mission.mission_num}
-        >
-          <span>
-            <h4>
-              {mission.mission_num} - {mission.job_name}
-            </h4>
-            <p>{mission.job_description}</p>
-          </span>
-        </div>
-      );
-    });
-    return missionNames;
   };
 
   return (
@@ -70,7 +43,8 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
             <div>{organization}</div>
           </div>
         </div>
-        <div>
+
+        <div className={styles.rightSide}>
           <div className={styles.displayRow}>
             <label>Client ID:</label>
             <div>{client_id}</div>
@@ -95,12 +69,16 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
             <label>Mission Details:</label>
           </h3>
           <div>
-            {missions ? (
+            {missions.length > 0 ? (
               <div className={styles.missionList}>
-                {missionNames(missionInfo)}
+                <MissionTable
+                  missionInfo={missionInfo}
+                  id={client_id}
+                  selector={missionSelect}
+                />
               </div>
             ) : (
-              `No jobs to show.`
+              `No missions to show.`
             )}
           </div>
         </div>
@@ -119,7 +97,7 @@ const ClientDisplay = ({ client, missionInfo, handleSelect }) => {
           <button className="btn btn-primary" onClick={goToEditDetails}>
             Edit Account Details
           </button>
-          <div>
+          <div style={{ textAlign: "center" }}>
             <Link to="/">Change Password</Link>
           </div>
         </div>

@@ -1,26 +1,50 @@
 .createMissionSection {
-  margin: 3% 25%;
-  padding: 3%;
-  background: rgba(53, 101, 42, 0.8);
+  margin: 2% 3%;
+  padding: 2%;
+  background: url(../../../utils/images/old_paper_1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow: 4px 8px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  color: white;
+  color: black;
   font-size: 18px;
 }
 
 .createMissionSection h2 {
   text-align: center;
+  letter-spacing: 0.16em;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 48px;
+  font-family: "Courier New", Courier, monospace;
 }
 
-/* .createMissionForm {
-} */
-
-.formGroup {
-  width: 100%;
+@media only screen and (max-width: 1440px) {
+  .createMissionSection {
+    margin: 1% 12.5%;
+  }
 }
 
-.formRow {
-  display: flex;
-  justify-content: space-between;
-  margin: 2% auto;
+@media only screen and (max-width: 1024px) {
+  .createMissionSection {
+    margin: 1% 5%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .createMissionSection {
+    margin: 1% 3%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .createMissionSection {
+    margin: 1% 3%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .createMissionSection {
+    margin: 1% 2%;
+  }
 }

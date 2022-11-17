@@ -4,11 +4,6 @@
   --main-bg-color_2: rgb(2, 184, 138);
 } */
 
-:root {
-  --main-bg-color_1: rgb(150, 143, 78);
-  --main-bg-color_2: rgb(2, 165, 111);
-}
-
 .bg {
   bottom: 0;
   left: -50%;
@@ -18,6 +13,7 @@
   top: 0;
   z-index: -1;
   background-color: var(--main-bg-color_1);
+  /* background-color: var(--background-color); */
 }
 
 /* Animated BG - Start */

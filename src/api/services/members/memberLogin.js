@@ -1,5 +1,6 @@
 // const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
-const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
+import { API_ENDPOINT } from "../../connection/server";
+// const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const memberLogin = async (member) => {
   // Returns true if password is valid for given member

@@ -4,10 +4,10 @@
   grid-template-rows: 10px 0.1fr 1fr 0.1fr;
   gap: 32px;
   margin: 1% 12.5%;
-  border: 1px solid black;
+  border: 1px solid var(--window-border);
   border-radius: 20px;
   padding: 2%;
-  background-color: rgba(53, 101, 42, 0.8);
+  background-color: var(--window-primary);
 }
 
 .tableContainer {

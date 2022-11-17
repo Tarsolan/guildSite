@@ -1,7 +1,8 @@
 import { getMission } from "./getMissions";
+import { API_ENDPOINT } from "../../connection/server";
 
 // const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
-const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
+// const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const addMission = async (mission) => {
   const res = await fetch(API_ENDPOINT + "/missions/new", {

@@ -1,0 +1,55 @@
+.login {
+  color: #ececec;
+  margin: 1% 25% 1% 25%;
+  padding: 3%;
+  background: var(--window-primary);
+  border: 1px solid var(--window-border);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+.login h2 {
+  text-align: center;
+  letter-spacing: 0.16em;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 48px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.login button {
+  background-color: var(--button-color-login);
+  color: black;
+  border: 1px solid black;
+}
+
+.login button:hover {
+  background-color: var(--button-color-login-hover);
+  color: black;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 1600px) {
+  .login {
+    margin: 3% 15%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .login {
+    margin: 3% 12.5%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .login {
+    margin: 3% 10%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .login {
+    margin: 3% 5%;
+  }
+}

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./css/createMember.module.css";
+import accountStyles from "../css/AccountInfo.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
 const CreateMember = ({ members, onAdd, miscData }) => {
@@ -26,7 +26,9 @@ const CreateMember = ({ members, onAdd, miscData }) => {
     return (
       races && (
         <>
-          <option></option>
+          <option selected disabled>
+            Choose...
+          </option>
           {races.map((race) => {
             return <option key={race.race_id}>{race.race}</option>;
           })}
@@ -62,7 +64,10 @@ const CreateMember = ({ members, onAdd, miscData }) => {
           setSpec(e.target.value);
         }}
       >
-        <option></option>;
+        <option selected disabled>
+          Add Spec...
+        </option>
+        <option></option>
         {specializations &&
           specializations.map((spec) => {
             return <option key={spec.spec_id}>{spec.spec_name}</option>;
@@ -138,16 +143,25 @@ const CreateMember = ({ members, onAdd, miscData }) => {
   };
 
   return (
-    <div className={styles.accountSection}>
+    <div className={accountStyles.accountSection}>
       <h2 className="create-acc-heading">Create Account</h2>
-      <form
-        className={styles.createAccountForm}
-        action="/newMember"
-        method="post"
-        onSubmit={submitData}
-      >
-        <div className={styles.formRow}>
-          <div className="form-group col-md-5">
+      <form action="/newMember" method="post" onSubmit={submitData}>
+        <div className="form-row">
+          <div className="form-group col-md-6 offset-md-3">
+            <label htmlFor="inputTitle">Title (Username)</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputTitle"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              value={title}
+            />
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputFirstName4">First Name</label>
             <input
               type="text"
@@ -159,7 +173,7 @@ const CreateMember = ({ members, onAdd, miscData }) => {
               value={firstName}
             />
           </div>
-          <div className="form-group col-md-5">
+          <div className="form-group col">
             <label htmlFor="inputLastName4">Last Name</label>
             <input
               type="text"
@@ -172,8 +186,9 @@ const CreateMember = ({ members, onAdd, miscData }) => {
             />
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-4">
+        <hr />
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputPassword4">Password</label>
             <input
               type="password"
@@ -185,8 +200,8 @@ const CreateMember = ({ members, onAdd, miscData }) => {
               value={password}
             />
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputPassword5"> Confirm Password</label>
+          <div className="form-group col">
+            <label htmlFor="inputPassword5">Confirm Password</label>
             <input
               type="password"
               className="form-control"
@@ -198,20 +213,7 @@ const CreateMember = ({ members, onAdd, miscData }) => {
             />
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-5">
-            <label htmlFor="inputTitle">Title</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputTitle"
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              value={title}
-            />
-          </div>
-        </div>
+
         <hr />
         <div>
           <h3>Other Information</h3>
@@ -229,7 +231,7 @@ const CreateMember = ({ members, onAdd, miscData }) => {
             value={description}
           />
         </div>
-        <div className={styles.formRow}>
+        <div className="form-row">
           <div className="form-group col-md-4">
             <label htmlFor="inputRace">Race</label>
             <select
@@ -245,23 +247,25 @@ const CreateMember = ({ members, onAdd, miscData }) => {
         </div>
 
         <h3>Specializations</h3>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputSpec">Specialization</label>
+        <div className="form-row">
+          <div className="form-group col-md-5">
+            <label htmlFor="inputSpec">Specialization 1</label>
             {specNames(1)}
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputSpec">Specialization</label>
+          <div className="form-group col-md-2"></div>
+          <div className="form-group col-md-5">
+            <label htmlFor="inputSpec">Specialization 2</label>
             {specNames(2)}
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputSpec">Specialization</label>
+        <div className="form-row">
+          <div className="form-group col-md-5">
+            <label htmlFor="inputSpec">Specialization 3</label>
             {specNames(3)}
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputSpec">Specialization</label>
+          <div className="form-group col-md-2"></div>
+          <div className="form-group col-md-5">
+            <label htmlFor="inputSpec">Specialization 4</label>
             {specNames(4)}
           </div>
         </div>

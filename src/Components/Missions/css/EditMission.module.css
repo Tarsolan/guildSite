@@ -1,7 +1,7 @@
 #missionDetail {
   background: url("../../../utils/images/cork.jpg");
   background-size: auto;
-  margin: 3% 20%;
+  margin: 1% 20%;
   border: 5px solid black;
   border-radius: 8px;
   background-color: #9c6f3e;
@@ -174,7 +174,7 @@
 
 @media only screen and (max-width: 1000px) {
   #missionDetail {
-    margin: 3% 5%;
+    margin: 1% 5%;
   }
 
   .missionComplete {
@@ -238,5 +238,11 @@
     color: white;
     padding: 2px 4px;
     margin: 1% auto;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .detailTop input {
+    font-size: 1.25rem;
   }
 }

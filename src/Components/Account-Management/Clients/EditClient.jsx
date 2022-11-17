@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 import { useNavigate } from "react-router-dom";
-import styles from "./css/EditClient.module.css";
+import accountStyles from "../css/AccountInfo.module.css";
 // const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
-const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
+import { API_ENDPOINT } from "../../../api/connection/server";
+// const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const EditClient = ({ client, onEdit }) => {
   const {
@@ -76,16 +77,11 @@ const EditClient = ({ client, onEdit }) => {
   };
 
   return (
-    <div className={styles.accountSection}>
+    <div className={accountStyles.accountSection}>
       <h2>Edit Client</h2>
-      <form
-        className={styles.createAccountForm}
-        action="/newClient"
-        method="post"
-        onSubmit={editClient}
-      >
-        <div className={styles.formRow}>
-          <div className="form-group col-md-6">
+      <form action="/newClient" method="post" onSubmit={editClient}>
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputOrg">Organization Name</label>
             <input
               type="text"
@@ -98,8 +94,8 @@ const EditClient = ({ client, onEdit }) => {
             />
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-5">
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputFirstName4">First Name</label>
             <input
               type="text"
@@ -111,7 +107,7 @@ const EditClient = ({ client, onEdit }) => {
               value={firstName}
             />
           </div>
-          <div className="form-group col-md-5">
+          <div className="form-group col">
             <label htmlFor="inputLastName4">Last Name</label>
             <input
               type="text"

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./css/editMember.module.css";
+import accountStyles from "../css/AccountInfo.module.css";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 
 const EditMember = ({ member, members, onEdit, miscData }) => {
@@ -171,16 +171,25 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
   };
 
   return (
-    <div className={styles.accountSection}>
-      <h2 className="create-acc-heading">Edit Account Details</h2>
-      <form
-        className={styles.createAccountForm}
-        action="/editMember"
-        method="put"
-        onSubmit={submitData}
-      >
-        <div className={styles.formRow}>
-          <div className="form-group col-md-5">
+    <div className={accountStyles.accountSection}>
+      <h2>Edit Account Details</h2>
+      <form action="/editMember" method="put" onSubmit={submitData}>
+        <div className="form-row">
+          <div className="form-group col-md-6 offset-md-3">
+            <label htmlFor="inputTitle">Title</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputTitle"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              value={newTitle}
+            />
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputFirstName4">First Name</label>
             <input
               type="text"
@@ -192,7 +201,7 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
               value={firstName}
             />
           </div>
-          <div className="form-group col-md-5">
+          <div className="form-group col">
             <label htmlFor="inputLastName4">Last Name</label>
             <input
               type="text"
@@ -202,21 +211,6 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
                 setLastName(e.target.value);
               }}
               value={lastName}
-            />
-          </div>
-        </div>
-
-        <div className={styles.formRow}>
-          <div className="form-group col-md-5">
-            <label htmlFor="inputTitle">Title</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputTitle"
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              value={newTitle}
             />
           </div>
         </div>
@@ -237,7 +231,7 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
             value={description}
           />
         </div>
-        <div className={styles.formRow}>
+        <div className="form-row">
           <div className="form-group col-md-4">
             <label htmlFor="inputRace">Race</label>
             <select
@@ -250,7 +244,7 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
               {raceNames()}
             </select>
           </div>
-          <div className="form-group col-md-4">
+          {/* <div className="form-group col-md-5">
             <label htmlFor="inputRank">Rank</label>
             <select
               id="inputRank"
@@ -261,26 +255,26 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
             >
               {rankNames()}
             </select>
-          </div>
+          </div> */}
         </div>
 
         <h3>Specializations</h3>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-4">
+        <div className="form-row">
+          <div className="form-group col-md-6 col-lg-4">
             <label htmlFor="inputSpec">Specialization</label>
             {specNames(1)}
           </div>
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-6 col-lg-4 offset-lg-4">
             <label htmlFor="inputSpec">Specialization</label>
             {specNames(2)}
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-4">
+        <div className="form-row">
+          <div className="form-group col-md-6 col-lg-4">
             <label htmlFor="inputSpec">Specialization</label>
             {specNames(3)}
           </div>
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-6 col-lg-4 offset-lg-4">
             <label htmlFor="inputSpec">Specialization</label>
             {specNames(4)}
           </div>
@@ -300,10 +294,11 @@ const EditMember = ({ member, members, onEdit, miscData }) => {
               I am not a robot!
             </label>
           </div>
+
+          <button type="submit" className="form-group col-md-2 btn btn-primary">
+            Confirm Edit!
+          </button>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Confirm Edit!
-        </button>
       </form>
     </div>
   );

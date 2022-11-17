@@ -1,9 +1,9 @@
 .clientDisplay {
   color: #ececec;
-  margin: 2% 25%;
+  margin: 1% 25%;
   padding: 2%;
-  background: rgba(53, 101, 42, 0.8);
-  border: 1px solid #5f5f5f;
+  background: var(--window-primary);
+  border: 1px solid var(--window-border);
   box-sizing: border-box;
   box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
@@ -11,6 +11,11 @@
 
 .clientDisplay h2 {
   text-align: center;
+  letter-spacing: 0.16em;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 32px;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .container {
@@ -20,13 +25,18 @@
 
 .leftSide {
   border-right: 1px solid #ececec;
+  padding-right: 10%;
+}
+
+.rightSide {
+  padding-left: 10%;
 }
 
 .displayRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 12px 10%;
+  /* margin: auto 10% auto auto; */
 }
 
 .displayRowBottom {
@@ -36,7 +46,7 @@
 .displayRow label,
 .displayRowBottom label,
 .displayRowDesc label {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
@@ -67,9 +77,9 @@
   cursor: pointer;
 }
 
-.editButton {
+/* .editButton {
   margin: auto;
-}
+} */
 
 /* .missionList li {
   border: 1px solid black;
@@ -127,6 +137,17 @@
   .leftSide {
     border-right: 0px;
     border-bottom: 1px solid #ececec;
+    padding: 0px;
+  }
+
+  .rightSide {
+    padding: 0px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .descCol {
+    display: none;
   }
 }
 

@@ -1,0 +1,72 @@
+/* Account Section Form Control */
+
+.accountSection {
+  color: #ececec;
+  /* font-family: "Montserrat", sans-serif; */
+  font-style: normal;
+  margin: 1% 25%;
+  padding: 3%;
+  background: var(--window-primary);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+.accountSection h2 {
+  text-align: center;
+  letter-spacing: 0.16em;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 48px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.accountSection form button {
+  background-color: var(--button-color-login);
+  border: 1px solid black;
+  color: black;
+}
+
+.accountSection form button:hover {
+  background-color: var(--button-color-login-hover);
+  border: 1px solid black;
+  color: black;
+}
+
+@media only screen and (max-width: 1440px) {
+  .accountSection {
+    margin: 1% 12.5%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .accountSection {
+    margin: 1% 10%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .accountSection {
+    margin: 1% 7.5%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .accountSection {
+    margin: 1% 3%;
+  }
+
+  .accountSection h2 {
+    font-size: 32pt;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .accountSection {
+    margin: 1% 1%;
+  }
+
+  .accountSection h2 {
+    font-size: 24pt;
+  }
+}
