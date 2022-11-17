@@ -57,18 +57,25 @@ const Navigation = ({
                 title="Mission Services"
                 id="basic-nav-dropdown"
                 menuVariant="dark"
-                eventKey="3"
               >
-                <NavDropdown.Item as={NavLink} to="/missions/all">
+                <NavDropdown.Item as={NavLink} to="/missions/all" eventKey="3">
                   Mission Board
                 </NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/missions/search">
+                <NavDropdown.Item
+                  as={NavLink}
+                  to="/missions/search"
+                  eventKey="4"
+                >
                   Search Missions <AiOutlineSearch />
                 </NavDropdown.Item>
 
                 <NavDropdown.Divider />
                 {loginCheckClient ? (
-                  <NavDropdown.Item as={NavLink} to="/missions/create">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/missions/create"
+                    eventKey="5"
+                  >
                     Create new Mission
                   </NavDropdown.Item>
                 ) : (
@@ -78,6 +85,7 @@ const Navigation = ({
                     onClick={() => {
                       infoToast("Please log in before creating a mission.");
                     }}
+                    eventKey="5"
                   >
                     Create new Mission
                   </NavDropdown.Item>
@@ -87,36 +95,49 @@ const Navigation = ({
                 title="Account Management"
                 id="basic-nav-dropdown"
                 menuVariant="dark"
-                eventKey="4"
               >
-                {!loginCheckMember && (
-                  <NavDropdown.Item as={NavLink} to="/members/account/login">
+                {!loginCheckMember ? (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/members/account/login"
+                    eventKey="6"
+                  >
                     Member Login
                   </NavDropdown.Item>
+                ) : (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/members/account/info"
+                    eventKey="6"
+                  >
+                    Details - Member
+                  </NavDropdown.Item>
                 )}
-                {!loginCheckClient && (
-                  <NavDropdown.Item as={NavLink} to="/clients/login">
+                {!loginCheckClient ? (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/clients/login"
+                    eventKey="7"
+                  >
                     Client Login
                   </NavDropdown.Item>
-                )}
-                {loginCheckClient && (
-                  <NavDropdown.Item as={NavLink} to="/clients/info">
+                ) : (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/clients/info"
+                    eventKey="7"
+                  >
                     Details - Client
-                  </NavDropdown.Item>
-                )}
-                {loginCheckMember && (
-                  <NavDropdown.Item as={NavLink} to="/members/account/info">
-                    Details - Member
                   </NavDropdown.Item>
                 )}
                 <NavDropdown.Divider />
                 {loginCheckMember && (
-                  <NavDropdown.Item onClick={logOutMem}>
+                  <NavDropdown.Item onClick={logOutMem} eventKey="8">
                     Member Logout
                   </NavDropdown.Item>
                 )}
                 {loginCheckClient && (
-                  <NavDropdown.Item onClick={logOutCli}>
+                  <NavDropdown.Item onClick={logOutCli} eventKey="9">
                     Client Logout
                   </NavDropdown.Item>
                 )}

@@ -5,6 +5,7 @@
   box-shadow: 10px 10px 4px 3px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   margin: 5% 20%;
+  border: 1px solid var(--window-border);
   /* height: 100%; */
 }
 
@@ -17,7 +18,7 @@
   display: grid;
   padding: 2%;
   grid-template-columns: 0.5fr 1fr;
-  background-color: rgb(53, 101, 42);
+  background-color: var(--window-primary);
   color: beige;
   border-radius: 16px 16px 0px 0px;
   gap: 12px;

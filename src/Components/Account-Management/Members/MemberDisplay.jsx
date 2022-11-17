@@ -25,13 +25,6 @@ const MemberDisplay = ({ selectMission }) => {
   const goToEditDetails = () => navigate("/members/account/info/edit");
   const goToMissionPage = (num) => navigate(`/missions/info/${num}`);
 
-  // var missionNames = [];
-  // for (let i = 0; i < missionDetails.length; i++) {
-  //   missionNames.push(missionDetails[i].job_name);
-  //   console.log(missionDetails[i].job_name);
-  //   console.log(missionNames);
-  // }
-
   const handleSelectMission = (num) => {
     selectMission(num);
     goToMissionPage(num);
@@ -52,7 +45,6 @@ const MemberDisplay = ({ selectMission }) => {
   return (
     <div className={styles.memberDisplay}>
       <h2>Account Details</h2>
-      {authCtx.isAdmin && <p>I AM ADMIN</p>}
       <div className={styles.container}>
         <div className={styles.leftSide}>
           <div className={styles.displayRow}>

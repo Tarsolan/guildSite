@@ -1,11 +1,11 @@
 /* Footer */
 
 #footer {
-	background-color: rgba(53, 101, 42, 0.8);
-	border-top: 2px solid rgba(224, 207, 51, 0.8);
-	font-family: "Parisienne", cursive;
-	height: auto;
-	padding: 8px;
-	color: white;
-	margin-top: auto;
+  background-color: var(--window-primary);
+  border-top: 2px solid var(--window-border);
+  font-family: "Parisienne", cursive;
+  height: auto;
+  padding: 8px;
+  color: var(--text-color-primary);
+  margin-top: auto;
 }

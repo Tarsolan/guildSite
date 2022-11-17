@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./css/CreateClient.module.css";
+import accountStyles from "../css/AccountInfo.module.css";
+
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 // const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
-const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
+import { API_ENDPOINT } from "../../../api/connection/server";
+// const API_ENDPOINT = "https://guildserver.aridgeleyportfolio.ca";
 
 const CreateClient = ({ onAdd }) => {
   const [firstName, setFirstName] = useState("");
@@ -70,16 +72,11 @@ const CreateClient = ({ onAdd }) => {
   };
 
   return (
-    <div className={styles.accountSection}>
+    <div className={accountStyles.accountSection}>
       <h2>New Client Information</h2>
-      <form
-        className={styles.createAccountForm}
-        action="/newClient"
-        method="post"
-        onSubmit={addClient}
-      >
-        <div className={styles.formRow}>
-          <div className="form-group col-md-6">
+      <form action="/newClient" method="post" onSubmit={addClient}>
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputOrg">Organization Name</label>
             <input
               type="text"
@@ -92,8 +89,8 @@ const CreateClient = ({ onAdd }) => {
             />
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-5">
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputFirstName4">First Name</label>
             <input
               type="text"
@@ -105,7 +102,7 @@ const CreateClient = ({ onAdd }) => {
               value={firstName}
             />
           </div>
-          <div className="form-group col-md-5">
+          <div className="form-group col">
             <label htmlFor="inputLastName4">Last Name</label>
             <input
               type="text"
@@ -118,8 +115,9 @@ const CreateClient = ({ onAdd }) => {
             />
           </div>
         </div>
-        <div className={styles.formRow}>
-          <div className="form-group col-md-4">
+        <hr />
+        <div className="form-row">
+          <div className="form-group col">
             <label htmlFor="inputPassword4">Password</label>
             <input
               type="password"
@@ -131,7 +129,7 @@ const CreateClient = ({ onAdd }) => {
               value={password}
             />
           </div>
-          <div className="form-group col-md-4">
+          <div className="form-group col">
             <label htmlFor="inputPassword5"> Confirm Password</label>
             <input
               type="password"

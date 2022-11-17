@@ -7,6 +7,7 @@ import MissionDetail from "../Missions/MissionDetail";
 import NewMission from "../Missions/NewMission";
 import NewReport from "../Missions/NewReport";
 import SearchMission from "../Missions/SearchMission";
+import Board from "../UI/Board";
 
 const MissionRoutes = ({ missionPackage }) => {
   const {
@@ -57,7 +58,11 @@ const MissionRoutes = ({ missionPackage }) => {
       {clientInfo && (
         <Route
           path="/create"
-          element={<NewMission onAdd={onAdd} client={clientInfo} />}
+          element={
+            <Board>
+              <NewMission onAdd={onAdd} client={clientInfo} />
+            </Board>
+          }
         />
       )}
 
