@@ -15,14 +15,18 @@ const Members = ({ members, handleSelect }) => {
 
   return (
     <div id={styles.memberContainer}>
-      <ViewSwitcher onSwitch={setViewState} />
+      <div>
+        <ViewSwitcher onSwitch={setViewState} />
+      </div>
 
-      {viewState === "card" && (
+      {viewState === "card" ? (
         <div id={styles.memberHead}>
           <Arrow side={"left"} paginate={paginate} size={40} />
-          <h2>Member List</h2>
+          <h2>Members</h2>
           <Arrow side={"right"} paginate={paginate} size={40} />
         </div>
+      ) : (
+        <h2 style={{ color: "white", textAlign: "center" }}>Members</h2>
       )}
 
       {viewState === "card" ? (
