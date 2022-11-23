@@ -1,7 +1,7 @@
 .searchContainer {
   margin: 1% 12.5%;
-  background-color: rgba(53, 101, 42, 1);
-  border: 3px solid rgba(224, 207, 51, 0.8);
+  background: var(--window-primary);
+  border: 3px solid var(--window-border);
   padding: 3%;
   color: white;
   font-size: 18px;
