@@ -25,22 +25,8 @@ const MemberRoutes = ({ memberPackage }) => {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <AllMembersList members={members} handleSelect={handleSelect} />
-        }
-      />
-      <Route
-        path="/info"
-        element={
-          <MembersInfo
-            selectedMember={selectedMember}
-            members={members}
-            pointEdit={pointEdit}
-          />
-        }
-      />
+      <Route path="/" element={<AllMembersList />} />
+      <Route path="/info" element={<MembersInfo />} />
       <Route
         path="/account/login"
         element={<MemberLogin members={members} handleLogin={handleLogin} />}

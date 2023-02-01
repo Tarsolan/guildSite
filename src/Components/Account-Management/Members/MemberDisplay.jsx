@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../../utils/providers/MemberContextControl";
+import AuthContext from "../../../utils/providers/members/MemberAuthContext";
 import styles from "./css/memberDisplay.module.css";
 
 const MemberDisplay = ({ selectMission }) => {
@@ -18,7 +18,7 @@ const MemberDisplay = ({ selectMission }) => {
     image_url,
     completed,
     missionDetails,
-  } = authCtx.member;
+  } = authCtx.currentMember;
   let date = new Date(join_date).toLocaleDateString();
 
   const navigate = useNavigate();

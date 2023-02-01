@@ -4,16 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MemberAuthContext } from "./utils/providers/MemberContextControl";
+import { MemberDataContext } from "./utils/providers/members/AllMemberContext";
+import { MemberAuthContext } from "./utils/providers/members/MemberAuthContext";
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(
-  <MemberAuthContext>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </MemberAuthContext>
+  <MemberDataContext>
+    <MemberAuthContext>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </MemberAuthContext>
+  </MemberDataContext>
 );
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));

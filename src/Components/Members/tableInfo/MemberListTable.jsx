@@ -2,7 +2,7 @@ import React from "react";
 import MemberListItem from "./MemberListItem";
 import styles from "./css/MemberListTable.module.css";
 
-const MemberListTable = ({ members, handleSelect }) => {
+const MemberListTable = ({ members }) => {
   return (
     <table className="table table" id={styles.memberTable}>
       <thead className="thead-dark">
@@ -17,13 +17,7 @@ const MemberListTable = ({ members, handleSelect }) => {
       <tbody>
         {members
           ? members.map((member, i) => {
-              return (
-                <MemberListItem
-                  member={member}
-                  handleSelect={handleSelect}
-                  key={i}
-                />
-              );
+              return <MemberListItem member={member} key={i} />;
             })
           : `There is no member data available.`}
       </tbody>

@@ -3,13 +3,17 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { successToast, errorToast } from "../../../utils/hooks/useToast";
 import { memberLogin } from "../../../api/services/members/memberLogin";
-import AuthContext from "../../../utils/providers/MemberContextControl";
+
+import MemberContext from "../../../utils/providers/members/AllMemberContext";
+import AuthContext from "../../../utils/providers/members/MemberAuthContext";
+
 import LoginForm from "../../UI/LoginForm";
 
 const MemberLogin = ({ members, handleLogin }) => {
   const [title, setTitle] = useState("");
   const [password, setPassword] = useState("");
   const authCtx = useContext(AuthContext);
+  const memCtx = useContext(MemberContext);
 
   const navigate = useNavigate();
   const goToMemberInfo = () => navigate("/members/account/info");
@@ -19,7 +23,7 @@ const MemberLogin = ({ members, handleLogin }) => {
     var selectedMember = {};
     e.preventDefault();
 
-    members.forEach((member) => {
+    memCtx.members.forEach((member) => {
       if (member.title === title) {
         match = true;
         selectedMember = member;

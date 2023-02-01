@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./css/MemberListItem.module.css";
 
-const MemberListItem = ({ member, handleSelect }) => {
+const MemberListItem = ({ member }) => {
   const { full_name, title, race, desc, rank_name, member_id, point_total } =
     member;
 

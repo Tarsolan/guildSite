@@ -8,17 +8,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { addClient } from "./api/services/clients/addClient";
 import { editClient } from "./api/services/clients/editClient";
-import { addMember } from "./api/services/members/addMember";
-import {
-  editMember,
-  editMemberPoints,
-} from "./api/services/members/editMember";
-import { getMembers } from "./api/services/members/getMembers";
-import {
-  getRaces,
-  getRanks,
-  getSpecs,
-} from "./api/services/members/getMiscData";
+
 import { addMission } from "./api/services/missions/addMission";
 import { addReport } from "./api/services/missions/addReport";
 import { editMission } from "./api/services/missions/editMission";
@@ -30,35 +20,44 @@ import PageNotFound from "./Components/General/PageNotFound";
 import ClientRoutes from "./Components/Routes/ClientRoutes";
 import MemberRoutes from "./Components/Routes/MemberRoutes";
 import MissionRoutes from "./Components/Routes/MissionRoutes";
-import AuthContext from "./utils/providers/MemberContextControl";
+
+import MemberContext from "./utils/providers/members/AllMemberContext";
+import AuthContext from "./utils/providers/members/MemberAuthContext";
 
 function App() {
-  const [members, setMembers] = useState([]); // Member List
+  // const [members, setMembers] = useState([]); // Member List
   const [missions, setMissions] = useState([]); // Mission List
-  const [miscData, setMiscData] = useState(false);
+  // const [miscData, setMiscData] = useState(false);
   const [clientLoggedIn, setClientLoggedIn] = useState(false); // True if client is logged in
-  const [memberLoggedIn, setMemberLoggedIn] = useState(false); // True if member is logged in
+  // const [memberLoggedIn, setMemberLoggedIn] = useState(false); // True if member is logged in
   const [currentClient, setCurrentClient] = useState(false); // Stores info on currently logged in client
-  const [currentMemberID, setCurrentMemberID] = useState(false); // Stores info on currently logged in member
-  const [selectedMemberID, setSelectedMemberID] = useState(false); // Stores info on currently selected member (for info page)
+  // const [currentMemberID, setCurrentMemberID] = useState(false); // Stores info on currently logged in member
+  // const [selectedMemberID, setSelectedMemberID] = useState(false); // Stores info on currently selected member (for info page)
   const [selectedMissionID, setSelectedMissionID] = useState(false); // Stores info on currently selected mission (for info page)
-  const authCtx = useContext(AuthContext);
+  // const authCtx = useContext(AuthContext);
+  const memberDataCtx = useContext(MemberContext);
+  const memberAuthCtx = useContext(AuthContext);
 
   useEffect(() => {
-    async function getMiscData() {
-      const raceData = await getRaces();
-      const specData = await getSpecs();
-      const rankData = await getRanks();
+    memberDataCtx.getMembers();
+    memberDataCtx.getMiscData();
 
-      setMiscData({
-        races: raceData,
-        ranks: rankData,
-        specializations: specData,
-      });
-    }
-    getMiscData();
     getMissionData();
-    getMemberData();
+
+    // async function getMiscData() {
+    //   const raceData = await getRaces();
+    //   const specData = await getSpecs();
+    //   const rankData = await getRanks();
+
+    //   setMiscData({
+    //     races: raceData,
+    //     ranks: rankData,
+    //     specializations: specData,
+    //   });
+    // }
+    // getMiscData();
+
+    // getMemberData();
   }, []);
 
   // Data fetching
@@ -67,21 +66,21 @@ function App() {
     setMissions(missionData);
   };
 
-  const getMemberData = async () => {
-    const memberData = await getMembers();
-    setMembers(memberData);
-  };
+  // const getMemberData = async () => {
+  //   const memberData = await getMembers();
+  //   setMembers(memberData);
+  // };
 
   // Memory
-  const currentMember = useMemo(
-    () => members.find((member) => member.member_id === currentMemberID),
-    [members, currentMemberID]
-  );
+  // const currentMember = useMemo(
+  //   () => members.find((member) => member.member_id === currentMemberID),
+  //   [members, currentMemberID]
+  // );
 
-  const selectedMember = useMemo(
-    () => members.find((member) => member.member_id === selectedMemberID),
-    [members, selectedMemberID]
-  );
+  // const selectedMember = useMemo(
+  //   () => members.find((member) => member.member_id === selectedMemberID),
+  //   [members, selectedMemberID]
+  // );
 
   const selectedMission = useMemo(
     () => missions.find((mission) => mission.mission_num === selectedMissionID),
@@ -89,54 +88,54 @@ function App() {
   );
 
   // Member Stuff
-  const memberLogin = (member) => {
-    setCurrentMemberID(member.member_id);
-    setSelectedMemberID(member.member_id);
-    setMemberLoggedIn(true);
-    authCtx.login(member);
-  };
+  // const memberLogin = (member) => {
+  //   setCurrentMemberID(member.member_id);
+  //   setSelectedMemberID(member.member_id);
+  //   setMemberLoggedIn(true);
+  //   authCtx.login(member);
+  // };
 
-  const memberLogout = () => {
-    infoToast(
-      `Logging you out, ${currentMember.full_name}. Please come again.`
-    );
-    setCurrentMemberID(false);
-    setMemberLoggedIn(false);
-    authCtx.logout();
-  };
+  // const memberLogout = () => {
+  //   infoToast(
+  //     `Logging you out, ${currentMember.full_name}. Please come again.`
+  //   );
+  //   setCurrentMemberID(false);
+  //   setMemberLoggedIn(false);
+  //   authCtx.logout();
+  // };
 
-  const newMember = async (member, specArr) => {
-    const newMem = await addMember(member, specArr);
-    setMembers([...members, newMem]);
-    setCurrentMemberID(newMem.member_id);
-    setMemberLoggedIn(true);
-  };
+  // const newMember = async (member, specArr) => {
+  //   const newMem = await addMember(member, specArr);
+  //   setMembers([...members, newMem]);
+  //   setCurrentMemberID(newMem.member_id);
+  //   setMemberLoggedIn(true);
+  // };
 
-  const memberEdit = async (member, specs) => {
-    const editedMem = await editMember(member, specs);
-    setMembers(
-      members.map((mem) =>
-        mem.member_id === editedMem.member_id ? editedMem : mem
-      )
-    );
-    setCurrentMemberID(member.member_id);
-    getMissionData();
-  };
+  // const memberEdit = async (member, specs) => {
+  //   const editedMem = await editMember(member, specs);
+  //   setMembers(
+  //     members.map((mem) =>
+  //       mem.member_id === editedMem.member_id ? editedMem : mem
+  //     )
+  //   );
+  //   setCurrentMemberID(member.member_id);
+  //   getMissionData();
+  // };
 
-  const memberPointEdit = async (point_total, member_id) => {
-    await editMemberPoints(point_total, member_id);
-    setMembers(
-      members.map((mem) =>
-        mem.member_id === member_id
-          ? { ...selectedMember, point_total: point_total }
-          : mem
-      )
-    );
-  };
+  // const memberPointEdit = async (point_total, member_id) => {
+  //   await editMemberPoints(point_total, member_id);
+  //   setMembers(
+  //     members.map((mem) =>
+  //       mem.member_id === member_id
+  //         ? { ...selectedMember, point_total: point_total }
+  //         : mem
+  //     )
+  //   );
+  // };
 
-  const handleSelectMember = (member) => {
-    setSelectedMemberID(member.member_id);
-  };
+  // const handleSelectMember = (member) => {
+  //   setSelectedMemberID(member.member_id);
+  // };
 
   // Client Stuff
   const clientLogin = async (client) => {
@@ -220,17 +219,17 @@ function App() {
 
   // Data Packages - should probably move some of this to context or something similar
   const memberPackage = {
-    memberLoggedIn,
-    members,
-    member: currentMember,
-    miscData,
-    selectedMember,
-    handleSelect: handleSelectMember,
-    handleLogin: memberLogin,
+    memberLoggedIn: memberAuthCtx.memberLoggedIn,
+    members: memberDataCtx.members,
+    member: memberAuthCtx.currentMember,
+    miscData: memberDataCtx.miscData,
+    selectedMember: memberDataCtx.selectedMember,
+    handleSelect: memberDataCtx.setSelectedMemberID,
+    handleLogin: memberAuthCtx.login,
     selectMission: setSelectedMissionID,
-    onAdd: newMember,
-    onEdit: memberEdit,
-    pointEdit: memberPointEdit,
+    onAdd: memberDataCtx.newMember,
+    onEdit: memberDataCtx.memberEdit,
+    pointEdit: memberDataCtx.memberPointEdit,
   };
 
   const clientPackage = {
@@ -246,16 +245,16 @@ function App() {
   const missionPackage = {
     missions,
     clientInfo: currentClient,
-    handleSelectMem: handleSelectMember,
+    handleSelectMem: memberDataCtx.setSelectedMemberID,
     handleSelect: handleSelectMission,
-    selectedMember: selectedMember,
+    selectedMember: memberDataCtx.selectedMember,
     onPost: addMissionReport,
     onReportEdit: editMissionReport,
-    memberInfo: currentMemberID,
+    memberInfo: memberAuthCtx.currentMemberID,
     mission: selectedMission,
     onEdit: missionEdit,
     onAdd: createMission,
-    member: currentMember,
+    member: memberAuthCtx.currentMember,
   };
 
   return (
@@ -265,8 +264,8 @@ function App() {
         <Navigation
           loginCheckClient={clientLoggedIn}
           logOutClient={clientLogout}
-          loginCheckMember={memberLoggedIn}
-          logOutMember={memberLogout}
+          loginCheckMember={memberAuthCtx.memberLoggedIn}
+          logOutMember={memberAuthCtx.logout}
         />
       </header>
 

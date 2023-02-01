@@ -3,14 +3,16 @@ import usePagination from "../../utils/hooks/usePagination";
 import styles from "./css/AllMemberList.module.css";
 import MemberCard from "./cardInfo/MemberCard";
 import Arrow from "../UI/Arrow";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import MemberListTable from "./tableInfo/MemberListTable";
 import ViewSwitcher from "../UI/ViewSwitcher";
+import MemberContext from "../../utils/providers/members/AllMemberContext";
 
-const Members = ({ members, handleSelect }) => {
+const Members = () => {
   const [viewState, setViewState] = useState("card");
+  const memberCtx = useContext(MemberContext);
 
-  const paginate = usePagination(members, 6);
+  const paginate = usePagination(memberCtx.members, 6);
   // console.log(`Current page: ${paginate.currentPage}`);
 
   return (
@@ -31,12 +33,12 @@ const Members = ({ members, handleSelect }) => {
 
       {viewState === "card" ? (
         <>
-          {members
+          {memberCtx.members
             ? paginate.currentData().map((member, i) => {
                 return (
                   <MemberCard
                     member={member}
-                    handleSelect={handleSelect}
+                    handleSelect={memberCtx.setSelectedMemberID}
                     key={i}
                   />
                 );
@@ -44,7 +46,7 @@ const Members = ({ members, handleSelect }) => {
             : `There is no member data available.`}
         </>
       ) : (
-        <MemberListTable members={members} />
+        <MemberListTable members={memberCtx.members} />
       )}
 
       <div id={styles.memberHead}>

@@ -2,11 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { successToast } from "../../../utils/hooks/useToast";
-import AuthContext from "../../../utils/providers/MemberContextControl";
+
+import AuthContext from "../../../utils/providers/members/MemberAuthContext";
+// import MemberContext from "../../../utils/providers/members/AllMemberContext";
+
 import styles from "./css/SingleMemberInfo.module.css";
 
 const SingleMemberInfo = ({ member, pointEdit }) => {
   const authCtx = useContext(AuthContext);
+  // const memberCtx = useContext(MemberContext);
+
   const {
     member_id,
     full_name,
@@ -19,6 +24,7 @@ const SingleMemberInfo = ({ member, pointEdit }) => {
     completed,
     point_total,
   } = member;
+
   const date = new Date(join_date);
   const [newPointTotal, setNewPointTotal] = useState(point_total);
 
@@ -64,12 +70,12 @@ const SingleMemberInfo = ({ member, pointEdit }) => {
               <span>{completed ? completed : `0`}</span>
             </div>
 
-            {authCtx.isAdmin ? (
+            {authCtx.memberLoggedIn && authCtx.currentMember.is_admin ? (
               <form className={styles.pointForm} onSubmit={changePoints}>
                 <label>Point Total:</label>
                 <input
                   type="number"
-                  value={newPointTotal}
+                  placeholder={point_total}
                   onChange={(e) => {
                     setNewPointTotal(e.target.value);
                   }}
