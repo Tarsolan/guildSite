@@ -1,3 +1,2 @@
-# Guild Page for the East Annwm Adventurer's Guild
-
-Primarily a testing ground for new coding ideas, but also something functional and usable!
+# Guild Page
+This was my attempt at building a full MERN stack website. The front end is built with React, and the back end creates and uses a REST API with Node and Express, taking advantage of both MongoDB and PostgreSQL databases, with the ability for members and clients to log in seperately. Next phase of this will be adding proper security authentication to the logins! It is hosted on the internet through a variety of Amazon services.
